@@ -1,0 +1,54 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    background-color: lightgrey;
+}
+.navigation-bar {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+.navigation-bar-top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.top-container2{
+    display: flex;
+    justify-content: center;
+}
+.navbar-logo {
+    width: 12%;
+    margin: 0;
+}
+.navigation-bar-bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.nav-button{
+    text-decoration: none;
+    margin-right: 20px;
+    margin-left: 20px;
+    border: none;
+    color: black;
+    font-size: 18px;
+    font-family: 'Poppins',sans-serif;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding: 0 10px;
+}
+.nav-button:after{
+    content: "";
+    position: absolute;
+    background-color: grey;
+    height: 2px;
+    width: 0;
+    left: 0;
+    bottom: -1px;
+    transition: 0.3s;
+} 
+.nav-button:hover:after{
+    width: 100%;
+}

@@ -4,12 +4,39 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Website</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Website.styles.css" asp-append-version="true" />
+    @*<link rel="stylesheet" href="~/Website.styles.css" asp-append-version="true" />*@
+    
+    <link rel="stylesheet" href="~/css/LayoutNavBar.css" asp-append-version="true"/>
 </head>
 <body>
     <header>
+        <div class="navigation-bar">
+            <div class="navigation-bar-top">
+                <div class="top-container1">
+
+                </div>
+                <div class="top-container2">
+                    <img src="~/Images/NavbarLogo2.png" class="navbar-logo">
+                </div>
+                <div class="top-container3">
+
+                </div>                 
+            </div>
+            <div class=" navigation-bar-bottom">                                   
+                <a class="nav-button", asp-page="">NEW IN</a>                       
+                <a class="nav-button", asp-page="">BRANDS</a>
+                <a class="nav-button", asp-page="">SNEAKERS</a>
+                <a class="nav-button", asp-page="">ACCESSORIES</a>
+                <a class="nav-button", asp-page="">INFO</a>
+            </div>
+        </div>
+    </header>
+
+
+    @*<header>
+        <img>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">Website</a>
@@ -29,14 +56,16 @@
                 </div>
             </div>
         </nav>
-    </header>
+    </header>*@
+
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top fixed-bottom footer text-muted">
         <div class="container">
             &copy; 2023 - Website - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
