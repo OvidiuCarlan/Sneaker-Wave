@@ -9,11 +9,15 @@
     @*<link rel="stylesheet" href="~/Website.styles.css" asp-append-version="true" />*@
     
     <link rel="stylesheet" href="~/css/LayoutNavBar.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/LayoutFooter.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header>
         <div class="navigation-bar">
+
             <div class="navigation-bar-top">
+
                 <div class="top-container1">
 
                 </div>
@@ -22,15 +26,19 @@
                 </div>
                 <div class="top-container3">
 
-                </div>                 
+                </div>   
+                
             </div>
-            <div class=" navigation-bar-bottom">                                   
+            <div class=" navigation-bar-bottom">      
+                
                 <a class="nav-button", asp-page="">NEW IN</a>                       
                 <a class="nav-button", asp-page="">BRANDS</a>
                 <a class="nav-button", asp-page="">SNEAKERS</a>
                 <a class="nav-button", asp-page="">ACCESSORIES</a>
                 <a class="nav-button", asp-page="">INFO</a>
+
             </div>
+
         </div>
     </header>
 
@@ -65,10 +73,44 @@
         </main>
     </div>
 
-    <footer class="border-top fixed-bottom footer text-muted">
+    @*<footer class="border-top fixed-bottom footer text-muted">
         <div class="container">
             &copy; 2023 - Website - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
+    </footer>*@
+
+    <footer class="footer">
+
+
+        <div class="social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+
+        <ul class="list">
+            <li>
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#">Services</a>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#">Terms</a>
+            </li>
+            <li>
+                <a href="#">Privacy Policy</a>
+            </li>
+        </ul>
+        <p class="copyright">
+            Sneaker Wave Store ©
+        </p>
+
+
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
