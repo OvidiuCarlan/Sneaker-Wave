@@ -5,9 +5,9 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website", "Website\Website.csproj", "{94014C22-DF85-4747-B5B0-1CA950084D12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopPart", "DesktopPart\DesktopPart.csproj", "{79223EB0-08BD-43C9-BDB9-82A3E2FB836D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesktopPart", "DesktopPart\DesktopPart.csproj", "{79223EB0-08BD-43C9-BDB9-82A3E2FB836D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "ClassLibrary\Logic.csproj", "{A4C469E7-E20A-4F4B-A69A-902734B7B241}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "ClassLibrary\Logic.csproj", "{A4C469E7-E20A-4F4B-A69A-902734B7B241}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
