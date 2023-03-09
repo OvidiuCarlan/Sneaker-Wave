@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic
+namespace Logic.Logic
 {
-    public class Sneaker : Product
+    internal class Manager : User
     {
-        public string Size { get; set; }
     }
 }

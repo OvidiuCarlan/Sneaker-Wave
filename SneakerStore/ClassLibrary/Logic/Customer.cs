@@ -5,11 +5,11 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic
+namespace Logic.Logic
 {
     public class Customer : User
     {
-        public string Phone { get; set; }
-        public Address Address { get; set; }
+        public string ? Phone { get; set; }
+        public Address ? Address { get; set; }
     }
 }

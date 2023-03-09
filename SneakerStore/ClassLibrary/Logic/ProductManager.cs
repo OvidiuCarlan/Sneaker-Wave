@@ -1,16 +1,19 @@
-﻿using System;
+﻿using Logic.Persistance;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic
+namespace Logic.Logic
 {
     public class ProductManager
     {
-        public void AddProduct()
-        {
+        ProductDataHandler productDataHandler = new ProductDataHandler();
 
+        public void AddProduct(Product product)
+        {
+            productDataHandler.AddProductToDataBase(product);
         }
         public void RemoveProduct()
         {
