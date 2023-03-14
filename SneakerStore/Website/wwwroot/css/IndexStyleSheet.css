@@ -1,12 +1,22 @@
-﻿body {
-
-}
-.body {    
+﻿.container{
+    width: 100%;
+    height: auto;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
-.left, .right{
-    min-width: 100px;
-}
+.card{
+    width: 500px;
+    height: 500px;
+    color: black;
+    text-align: center;
 
+}
+.card img{
+    width: 500px;
+}
+.card .product-name, .product-price{
+    color: black;
+    font-size: 1.5rem;
+}
