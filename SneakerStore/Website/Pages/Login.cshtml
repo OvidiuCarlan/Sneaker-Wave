@@ -7,12 +7,21 @@
 <link rel="stylesheet" href="~/css/LoginStyleSheet.css" asp-append-version="true" />
 
 <section class="container">
+    <header>LOG IN</header>
     <form method="post">
-        <p>LOGIN</p>
-        <p>Please enter your e-mail and password:</p>
-        <input type="text", placeholder="E-mail" required/>
-        <input type="password", placeholder="Password" required/>
-        <button type="submit">LOGIN</button>
-        <a asp-page="#">Don't have an account?'</a>
+        <div class="field">
+            <label>Email</label>
+            <input type="email" placeholder="Enter Email" required>
+            <span></span>
+        </div>
+        <div class="field">
+            <label>Password</label>
+            <input type="password" placeholder="Enter Password" required>
+            <span></span>
+        </div>
+
+        <span style="color: red">@Html.ValidationMessage("WrongCredentials")</span><br>
+        <a asp-page="Index" class="login-link">I don't have an account</a>
+        <button type="submit">Log in</button>
     </form>
 </section>

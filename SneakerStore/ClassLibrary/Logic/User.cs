@@ -8,9 +8,10 @@ namespace Logic.Logic
 {
     public abstract class User
     {
-        protected int Id { get; set; }
-        protected string? Email { get; set; }
-        protected string? Password { get; set; }
+
+        public int Id { get; set; }
+        public string? Email { get; set; }
+        public string? Password { get; set; }
 
     }
 }
