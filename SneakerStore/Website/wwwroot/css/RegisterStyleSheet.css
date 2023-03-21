@@ -1,25 +1,25 @@
-﻿.container {
+﻿.container{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.container header{
+.container header {
     font-size: 1.3rem;
     font-weight: 500;
     text-align: center;
 }
-.container form{
-    margin-top: 30px;    
+.container form {
+    margin-top: 30px;
 }
-.field{
+.field {    
 }
 form.field {
     width: 100%;
     margin-top: 30px;
 }
-.field label{
+.field label {
     margin-top: 20px;
 }
 .field input {
@@ -33,7 +33,7 @@ form.field {
     box-shadow: 0 0 15px rgba(0,0,0,0.1);
     border-radius: 3px;
 }
-.field input:focus{
+.field input:focus {
     box-shadow: 0 1px;
 }
 .field button {
@@ -52,10 +52,10 @@ form.field {
     border-radius: 3px;
     box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
-.field button:hover{
+.field button:hover {
     opacity: 1;
 }
-.go-to-register{
+.go-to-login{
     display: inline-block;
     border-radius: 3px;
     background-color: black;
@@ -72,6 +72,6 @@ form.field {
     padding-top: 16px;
     padding-bottom: 16px;
 }
-.go-to-register:hover{
+.go-to-login:hover{
     opacity: 1;
 }

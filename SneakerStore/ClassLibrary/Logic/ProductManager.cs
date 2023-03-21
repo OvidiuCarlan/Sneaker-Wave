@@ -15,17 +15,17 @@ namespace Logic.Logic
         {
             productDataHandler.AddProductToDataBase(product);
         }
-        public void RemoveProduct()
+        public void RemoveProduct(int id)
         {
-
+            productDataHandler.DeleteProduct(id);
         }
-        public void EditProduct()
+        public void EditProduct(Product product)
         {
-
+            productDataHandler.EditProduct(product);
         }
-        public void GetAllProducts()
+        public List<Product> GetAllProducts()
         {
-
+            return productDataHandler.GetAllProducts();
         }
         public void GetAllAvailableProducts()
         {

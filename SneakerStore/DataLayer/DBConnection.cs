@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic.Persistance
+namespace DataLayer
 {
     public class DBConnection
     {
@@ -13,6 +13,5 @@ namespace Logic.Persistance
         {
             return new SqlConnection("Server=mssqlstud.fhict.local;Database=dbi481968;User Id=dbi481968;Password=parola;");
         }
-
     }
 }

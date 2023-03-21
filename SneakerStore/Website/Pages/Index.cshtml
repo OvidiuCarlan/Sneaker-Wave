@@ -1,15 +1,27 @@
 ﻿@page
+@using Logic.Logic
 @model IndexModel
 @{
     ViewData["Title"] = "Sneaker Wave";
 }
 
+@*
+https://dl.dropboxusercontent.com/s/hc2vfc49wfe5lw0/Jordan1Pollen.jpg?raw=1
+
+
+*@
 <link rel="stylesheet" href="~/css/IndexStyleSheet.css" asp-append-version="true" />
 
 <div class="container">
     @{
-        foreach(Product product in Model.products){
+        foreach(Product product in Model.products)
+        {
+            <div class="card">          
+                <img src="@product.Image" />
+                <p class="product-name">@product.Name</p>
+                <p class="product-price">€ @product.Price</p>
 
+            </div>
         }
     }
-        </div>
+</div>

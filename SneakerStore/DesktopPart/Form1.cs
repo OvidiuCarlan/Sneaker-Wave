@@ -4,11 +4,20 @@ namespace DesktopPart
 {
     public partial class Form1 : Form
     {
+        ProductManager productManager;
+        List<Product> products;
         public Form1()
         {
-            InitializeComponent();
+            InitializeComponent();     
+            productManager = new ProductManager();
+            products = productManager.GetAllProducts();
+        }     
+        
+        private void Form1_Load_1(object sender, EventArgs e)
+        {
+            dgvProducts.ReadOnly = true;
+            RefreshProductsDgv();
         }
-        ProductManager productManager = new ProductManager();
 
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
@@ -18,22 +27,40 @@ namespace DesktopPart
             string size = tbSize.Text;
             string category = tbCategory.Text;
             int quantity = Convert.ToInt32(tbQuantity.Text);
+            string image = tbImage.Text;
 
-            Product product = new Product(brand, name, price, size, category, quantity);
+            Product product = new Product(brand, name, price, size, category, quantity, image);
             productManager.AddProduct(product);
 
             MessageBox.Show("Product added");
             ClearProductFields();
+            RefreshProductsDgv();
         }
 
         public void ClearProductFields()
         {
-            tbBrand.Text = "";
-            tbName.Text = "";
-            tbPrice.Text = "";
-            tbSize.Text = "";
-            tbCategory.Text = "";
-            tbQuantity.Text = "";
+            tbBrand.Clear();
+            tbName.Clear();
+            tbPrice.Clear();
+            tbSize.Clear();
+            tbCategory.Clear();
+            tbQuantity.Clear();
+            tbImage.Clear();
+        }
+        public void RefreshProductsDgv()
+        {            
+            dgvProducts.DataSource = products;
+            dgvProducts.Update();
+            dgvProducts.Refresh();
+        }
+
+        private void dgvProducts_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int index = dgvProducts.CurrentRow.Index;
+            DataGridViewRow selectedRow = dgvProducts.Rows[index];
+                        
+            EditProduct editProduct = new EditProduct(products[index], this);
+            editProduct.ShowDialog();
         }
     }
 }

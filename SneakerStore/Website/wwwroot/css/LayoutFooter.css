@@ -8,9 +8,10 @@
     font-weight: 400;
     padding: 40px 0;
     box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
+    clear: both;
 }
 .footer .social{
     text-align: center;

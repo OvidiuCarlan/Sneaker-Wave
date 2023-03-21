@@ -9,6 +9,7 @@
 <section class="container">
     <header>LOG IN</header>
     <form method="post">
+
         <div class="field">
             <label>Email</label>
             <input type="email" placeholder="Enter Email" required>
@@ -19,9 +20,12 @@
             <input type="password" placeholder="Enter Password" required>
             <span></span>
         </div>
-
-        <span style="color: red">@Html.ValidationMessage("WrongCredentials")</span><br>
-        <a asp-page="Index" class="login-link">I don't have an account</a>
-        <button type="submit">Log in</button>
+        <div class="field">
+            <button type="submit">Log in</button>
+        </div>
+        <div class="field">
+            <a asp-page="Register" class="go-to-register">Sign up first</a>
+        </div>
+        
     </form>
 </section>

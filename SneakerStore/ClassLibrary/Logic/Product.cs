@@ -15,6 +15,7 @@ namespace Logic.Logic
         private string ? size;
         private string ? category;
         private int quantity;
+        private string? image;
 
 
 
@@ -25,9 +26,10 @@ namespace Logic.Logic
         public string? Size { get { return size; } set { size = value; } }
         public string? Category { get { return category; } set { category = value; } }
         public int Quantity { get { return quantity; } set { quantity = value; } }
+        public string Image { get { return image; } set { image = value; } }
 
 
-        public Product(string brand, string name, double price, string size, string category, int quantity)
+        public Product(string brand, string name, double price, string size, string category, int quantity, string image)
         {
             this.brand = brand;
             this.name = name;
@@ -35,6 +37,21 @@ namespace Logic.Logic
             this.size = size;
             this.category = category;
             this.quantity = quantity;
+            this.image = image;
+        }
+        public Product(int id, string brand, string name, double price, string size, string category, int quantity, string image)
+        {
+            this.id = id;
+            this.brand = brand;
+            this.name = name;
+            this.price = price;
+            this.size = size;
+            this.category = category;
+            this.quantity = quantity;
+            this.image = image;
+        }
+        public Product()
+        {
         }
     }
     
