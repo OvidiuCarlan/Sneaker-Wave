@@ -47,17 +47,24 @@
             <div class=" navigation-bar-bottom">  
                 
                 <nav>
-                    <a class="nav-button" , asp-page="" class="active">NEW IN</a>
+                    <div class="hamburger-menu">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+
+                    <a class="nav-button" , asp-page="">NEW IN</a>
                     <a class="nav-button" , asp-page="">BRANDS</a>
                     <a class="nav-button" , asp-page="">SNEAKERS</a>
                     <a class="nav-button" , asp-page="">ACCESSORIES</a>
                     <a class="nav-button" , asp-page="">INFO</a>
                 </nav>
 
-                <div class="hamburger">
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                @*<nav class="ham-nav">
+                    <div class="hamburger-menu">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
                 </div>                
 
             </div>
@@ -67,11 +74,14 @@
     <!--header end-->
 
     <script>
-        hamburger = document.querySelector(".hamburger");
-        nav = document.querySelector("nav");
-        hamburger.onclick = function () {
-            nav.classList.toggle("active");
-        }
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const navbarLinks = document.querySelectorAll('nav a');
+
+        hamburgerMenu.addEventListener('click' , () =>{
+            navbarLinks.forEach(link => {
+                link.classList.toggle('nav-button');
+            });
+        });
     </script>
 
     <!--body start-->
