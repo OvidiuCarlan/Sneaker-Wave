@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic.Logic
+namespace Logic.Models
 {
     public class Product
     {
@@ -32,7 +32,7 @@ namespace Logic.Logic
 
         public Product(string brand, string name, double price, string size, string category, int quantity, string image)
         {
-            this.id = 0;
+            id = 0;
             this.brand = brand;
             this.name = name;
             this.price = price;
@@ -54,28 +54,28 @@ namespace Logic.Logic
         }
         public Product()
         {
-            this.id = 0;
-            this.brand = "";
-            this.name = "";
-            this.price = 0;
-            this.size = "";
-            this.category = "";
-            this.quantity = 0;
-            this.image = "";
+            id = 0;
+            brand = "";
+            name = "";
+            price = 0;
+            size = "";
+            category = "";
+            quantity = 0;
+            image = "";
         }
 
         public ProductDTO ProductToProductDTO()
         {
             return new ProductDTO()
             {
-                Id = this.id,
-                Brand = this.brand,
-                Name = this.name,
-                Price = this.price,
-                Size = this.size,
-                Category = this.category,
-                Quantity = this.quantity,
-                Image = this.image
+                Id = id,
+                Brand = brand,
+                Name = name,
+                Price = price,
+                Size = size,
+                Category = category,
+                Quantity = quantity,
+                Image = image
             };
         }
         public Product(ProductDTO productDTO)
@@ -90,5 +90,5 @@ namespace Logic.Logic
             image = productDTO.Image;
         }
     }
-    
+
 }

@@ -1,12 +1,11 @@
 ﻿using DAL.DTOs;
-using Logic.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Interfaces
+namespace Logic.Interfaces
 {
     public interface IProductDataHandler
     {
@@ -14,6 +13,5 @@ namespace DAL.Interfaces
         public bool Remove(int id);
         public bool Edit(ProductDTO product);
         public List<ProductDTO> GetAll();
-
     }
 }

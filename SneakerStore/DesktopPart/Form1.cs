@@ -1,4 +1,5 @@
 using Logic.Logic;
+using Logic.Models;
 
 namespace DesktopPart
 {

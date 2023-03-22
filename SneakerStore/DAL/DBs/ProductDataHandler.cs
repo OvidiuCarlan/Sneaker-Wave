@@ -1,5 +1,6 @@
 ﻿using DAL.DTOs;
 using DAL.Interfaces;
+using Logic.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,12 +9,14 @@ using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
+using IProductDataHandler = Logic.Interfaces.IProductDataHandler;
 
-namespace DAL
+namespace DAL.DBs
 {
     public class ProductDataHandler : IProductDataHandler
     {
-        public bool AddProductToDataBase(ProductDTO product)
+        
+        public bool Add(ProductDTO product)
         {
             using (SqlConnection conn = DBConnection.CreateConnection())
             {
@@ -32,7 +35,8 @@ namespace DAL
                 return rowsAffected == 1;
             }
         }
-        public bool DeleteProduct(int id)
+        
+        public bool Remove(int id)
         {
             using (SqlConnection conn = DBConnection.CreateConnection())
             {
@@ -45,7 +49,8 @@ namespace DAL
                 return rowsAffected == 1;
             }
         }
-        public bool EditProduct(ProductDTO product)
+        
+        public bool Edit(ProductDTO product)
         {
             using (SqlConnection conn = DBConnection.CreateConnection())
             {
@@ -67,7 +72,7 @@ namespace DAL
                 return rowsAffected == 1;
             }
         }
-        public List<ProductDTO> GetAllProducts()
+        public List<ProductDTO> GetAll()
         {
             List<ProductDTO> products = new List<ProductDTO>();
             using (SqlConnection conn = DBConnection.CreateConnection())
@@ -91,11 +96,27 @@ namespace DAL
                     product.Category = reader.GetString("Category");
                     product.Quantity = reader.GetInt32("Quantity");
                     product.Image = reader.GetString("Image");
-                                        
+
                     products.Add(product);
                 }
                 return products;
             }
         }
+        //public bool Add(Type type)
+        //{
+        //    throw new ArgumentException("Invalid argument type. Expected Product.");
+        //}
+        //public bool Remove(Type type)
+        //{
+        //    throw new ArgumentException("Invalid argument type. Expected Product.");
+        //}
+        //public bool Edit(Type type)
+        //{
+        //    throw new ArgumentException("Invalid argument type. Expected Product.");
+        //}
+        //List<Type> IDataHandler.GetAll()
+        //{
+        //    throw new ArgumentException("Invalid argument type. Expected Product.");
+        //}
     }
 }

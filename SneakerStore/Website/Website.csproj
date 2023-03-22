@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary\Logic.csproj" />
+    <ProjectReference Include="..\DAL\DAL.csproj" />
   </ItemGroup>
 
 </Project>
