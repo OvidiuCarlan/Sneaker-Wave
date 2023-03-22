@@ -1,4 +1,5 @@
-﻿using Logic.Logic;
+﻿using DAL.DTOs;
+using DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,11 +9,11 @@ using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic.Persistance
+namespace DAL
 {
-    public class ProductDataHandler
+    public class ProductDataHandler : IProductDataHandler
     {
-        public bool AddProductToDataBase(Product product)
+        public bool AddProductToDataBase(ProductDTO product)
         {
             using (SqlConnection conn = DBConnection.CreateConnection())
             {
@@ -36,7 +37,7 @@ namespace Logic.Persistance
             using (SqlConnection conn = DBConnection.CreateConnection())
             {
                 string sql = "DELETE FROM [Products] WHERE(Id = @id)";
-                SqlCommand cmd = new SqlCommand(sql,conn);
+                SqlCommand cmd = new SqlCommand(sql, conn);
 
                 cmd.Parameters.AddWithValue("id", id);
                 conn.Open();
@@ -44,7 +45,7 @@ namespace Logic.Persistance
                 return rowsAffected == 1;
             }
         }
-        public bool EditProduct(Product product)
+        public bool EditProduct(ProductDTO product)
         {
             using (SqlConnection conn = DBConnection.CreateConnection())
             {
@@ -66,21 +67,21 @@ namespace Logic.Persistance
                 return rowsAffected == 1;
             }
         }
-        public List<Product> GetAllProducts()
+        public List<ProductDTO> GetAllProducts()
         {
-            List<Product> products = new List<Product>();
+            List<ProductDTO> products = new List<ProductDTO>();
             using (SqlConnection conn = DBConnection.CreateConnection())
             {
                 string sql = "SELECT * FROM [Products] ORDER BY Id";
-                SqlCommand cmd = new SqlCommand(sql,conn);
+                SqlCommand cmd = new SqlCommand(sql, conn);
                 conn.Open();
 
-                Product product = null;
+                ProductDTO product = null;
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    product = new Product();
+                    product = new ProductDTO();
 
                     product.Id = reader.GetInt32("Id");
                     product.Brand = reader.GetString("Brand");
@@ -90,7 +91,7 @@ namespace Logic.Persistance
                     product.Category = reader.GetString("Category");
                     product.Quantity = reader.GetInt32("Quantity");
                     product.Image = reader.GetString("Image");
-
+                                        
                     products.Add(product);
                 }
                 return products;

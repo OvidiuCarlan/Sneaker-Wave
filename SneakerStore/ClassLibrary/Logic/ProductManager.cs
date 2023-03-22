@@ -1,4 +1,5 @@
-﻿using Logic.Persistance;
+﻿using DAL;
+using DAL.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,8 @@ namespace Logic.Logic
         ProductDataHandler productDataHandler = new ProductDataHandler();
 
         public void AddProduct(Product product)
-        {
-            productDataHandler.AddProductToDataBase(product);
+        {          
+            productDataHandler.AddProductToDataBase(product.ProductToProductDTO());
         }
         public void RemoveProduct(int id)
         {
@@ -21,11 +22,18 @@ namespace Logic.Logic
         }
         public void EditProduct(Product product)
         {
-            productDataHandler.EditProduct(product);
+            productDataHandler.EditProduct(product.ProductToProductDTO());
         }
         public List<Product> GetAllProducts()
         {
-            return productDataHandler.GetAllProducts();
+            List<Product> products = new List<Product>();
+
+            foreach(ProductDTO productDTO in productDataHandler.GetAllProducts())
+            {
+                products.Add(new Product(productDTO));
+            }
+
+            return products;
         }
         public void GetAllAvailableProducts()
         {

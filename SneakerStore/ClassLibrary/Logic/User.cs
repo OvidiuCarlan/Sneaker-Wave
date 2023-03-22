@@ -14,11 +14,11 @@ namespace Logic.Logic
         private string email;
         private string password;
 
-        public int Id { get; set; }
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
-        public string? Email { get; set; }
-        public string? Password { get; set; }
+        public int Id { get; }
+        public string? FirstName { get; }
+        public string? LastName { get; }
+        public string? Email { get; }
+        public string? Password { get; }
 
     }
 }
