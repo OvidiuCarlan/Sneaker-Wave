@@ -19,7 +19,7 @@ https://dl.dropboxusercontent.com/s/jrmbo8o3awj0oh8/NewBalance550UNCWhiteDuskBlu
         foreach(Product product in Model.products)
         {
             <div class="card">          
-                <img src="@product.Image" />
+                <a asp-page="/ProductInfo"><img src="@product.Image"/></a>
                 <p class="product-name">@product.Name</p>
                 <p class="product-price">€ @product.Price</p>
 
