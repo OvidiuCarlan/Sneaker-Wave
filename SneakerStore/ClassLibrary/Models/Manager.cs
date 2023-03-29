@@ -8,6 +8,8 @@ namespace Logic.Models
 {
     internal class Manager : User
     {
-
+        public Manager(string firstName, string lastName, string email, string password) : base(firstName, lastName, email, password)
+        {
+        }
     }
 }

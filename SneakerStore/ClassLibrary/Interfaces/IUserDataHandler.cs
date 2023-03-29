@@ -1,4 +1,5 @@
-﻿using Logic.Models;
+﻿using Logic.DTOs;
+using Logic.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace Logic.Interfaces
 {
     public interface IUserDataHandler
     {
-        public bool Add();
+        public bool Add(CustomerDTO customerDTO);
         public bool Remove();
-        public bool Edit();
+        public bool Edit(CustomerDTO customerDTO);
         public List<User> GetAll();
     }
 }

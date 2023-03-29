@@ -9,7 +9,7 @@
 @*
 https://dl.dropboxusercontent.com/s/hc2vfc49wfe5lw0/Jordan1Pollen.jpg?raw=1
 
-https://dl.dropboxusercontent.com/s/jrmbo8o3awj0oh8/NewBalance550UNCWhiteDuskBlue.jpg?raw=1
+https://dl.dropboxusercontent.com/s/mkwgt893vi2qh2r/AIR%20JORDAN%201%20HIGH%20OG%20TRAVIS%20SCOTT.jpg?raw=1
 
 *@
 <link rel="stylesheet" href="~/css/IndexStyleSheet.css" asp-append-version="true" />
@@ -18,8 +18,8 @@ https://dl.dropboxusercontent.com/s/jrmbo8o3awj0oh8/NewBalance550UNCWhiteDuskBlu
     @{
         foreach(Product product in Model.products)
         {
-            <div class="card">          
-                <a asp-page="/ProductInfo"><img src="@product.Image"/></a>
+            <div class="card">
+                <a asp-page="/ProductInfo"><img src="@product.Image" /></a>
                 <p class="product-name">@product.Name</p>
                 <p class="product-price">€ @product.Price</p>
 

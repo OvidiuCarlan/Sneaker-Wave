@@ -1,14 +1,7 @@
 ﻿using DAL.DTOs;
-using DAL.Interfaces;
-using Logic.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Reflection.PortableExecutable;
 using System.Text;
-using System.Threading.Tasks;
 using IProductDataHandler = Logic.Interfaces.IProductDataHandler;
 
 namespace DAL.DBs

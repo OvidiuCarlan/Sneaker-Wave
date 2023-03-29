@@ -1,4 +1,5 @@
-﻿using Logic.Interfaces;
+﻿using Logic.DTOs;
+using Logic.Interfaces;
 using Logic.Models;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,12 @@ namespace DAL.DBs
 {
     public class UserDataHandler : IUserDataHandler
     {
-        public bool Add()
+        public bool Add(CustomerDTO customerDTO)
         {
             throw new NotImplementedException();
         }
 
-        public bool Edit()
+        public bool Edit(CustomerDTO customerDTO)
         {
             throw new NotImplementedException();
         }
