@@ -75,3 +75,7 @@ form.field {
 .go-to-login:hover{
     opacity: 1;
 }
+.error-message{
+    color: red;
+    font-weight: bold;
+}

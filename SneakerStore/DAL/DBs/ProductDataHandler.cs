@@ -99,21 +99,5 @@ namespace DAL.DBs
                 return products;
             }
         }
-        //public bool Add(Type type)
-        //{
-        //    throw new ArgumentException("Invalid argument type. Expected Product.");
-        //}
-        //public bool Remove(Type type)
-        //{
-        //    throw new ArgumentException("Invalid argument type. Expected Product.");
-        //}
-        //public bool Edit(Type type)
-        //{
-        //    throw new ArgumentException("Invalid argument type. Expected Product.");
-        //}
-        //List<Type> IDataHandler.GetAll()
-        //{
-        //    throw new ArgumentException("Invalid argument type. Expected Product.");
-        //}
     }
 }

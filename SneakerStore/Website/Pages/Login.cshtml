@@ -11,21 +11,30 @@
     <form method="post">
 
         <div class="field">
-            <label>Email</label>
-            <input type="email" placeholder="Enter Email" required>
-            <span></span>
+            <label asp-for="customer.email">Email</label>
+            <input asp-for="customer.email" type="email" placeholder="Enter Email" required>
+            <span asp-validation-for="customer.email"></span>
         </div>
         <div class="field">
-            <label>Password</label>
-            <input type="password" placeholder="Enter Password" required>
-            <span></span>
+            <label asp-for="customer.password">Password</label>
+            <input asp-for="customer.password" type="password" placeholder="Enter Password" required>
+            <span asp-validation-for="customer.password"></span>
         </div>
+        <div class="field">
+            <span asp-validation-for="customer.email" class="error-message">@Model.errorMessage</span>
+        </div>
+
         <div class="field">
             <button type="submit">Log in</button>
         </div>
         <div class="field">
             <a asp-page="Register" class="go-to-register">Sign up first</a>
         </div>
+
+        <input type="hidden" asp-for="customer.firstName" value="000" />
+        <input type="hidden" asp-for="customer.lastName" value="000" />
+        <input type="hidden" asp-for="customer.phone" value="000" />
+        <input type="hidden" asp-for="customer.salt" value="000" />
         
     </form>
 </section>

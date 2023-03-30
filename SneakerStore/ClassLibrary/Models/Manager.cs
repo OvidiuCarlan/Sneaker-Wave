@@ -8,7 +8,7 @@ namespace Logic.Models
 {
     internal class Manager : User
     {
-        public Manager(string firstName, string lastName, string email, string password) : base(firstName, lastName, email, password)
+        public Manager(string firstName, string lastName, string email, string salt, string password) : base(firstName, lastName, email, salt, password)
         {
         }
     }

@@ -12,11 +12,11 @@ namespace Logic.Models
         private string phone;
         public string Phone { get { return phone; } }
 
-        public Customer(string firstName, string lastName, string email, string password, string phone) : base(firstName, lastName, email, password)
+        public Customer(string firstName, string lastName, string email, string phone, string salt, string password) : base(firstName, lastName, email, salt, password)
         {
             this.phone = phone;
         }
-        public Customer(int id, string firstName, string lastName, string email, string password, string phone) : base(id, firstName, lastName, email, password)
+        public Customer(int id, string firstName, string lastName, string email, string salt, string password) : base(id, firstName, lastName, email, salt,  password)
         {
             this.phone = phone;
         }

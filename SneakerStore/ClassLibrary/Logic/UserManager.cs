@@ -25,6 +25,10 @@ namespace Logic.Logic
             bool isEmailUsed = _userDataHandler.IsEmailUsed(customerDTO.email);
             if (!isEmailUsed)
             {
+                (string passwordSalt, string hashedPassword) = Security.CreateSaltAndHash(customerDTO.password);
+                customerDTO.salt = passwordSalt;
+                customerDTO.password = hashedPassword;
+
                 _userDataHandler.Add(customerDTO);
             }
             else
@@ -32,7 +36,23 @@ namespace Logic.Logic
                 throw new Exception("Email is already used");
             }
         }
+        public bool Login(CustomerDTO customer)
+        {
+            (string dBpassword, string salt) = _userDataHandler.GetPasswordAndSaltByEmail(customer.email);
 
+            if (dBpassword == null || salt == null)
+            {
+                throw new Exception("Email is not correct");
+            }
+
+            string hashedInputedPass = Security.CreateHash(salt, customer.password);
+
+            if (!hashedInputedPass.Equals(dBpassword))
+            {
+                throw new Exception("Password is not correct");
+            }
+            return true;
+        }
         public void RemoveUser()
         {
 
