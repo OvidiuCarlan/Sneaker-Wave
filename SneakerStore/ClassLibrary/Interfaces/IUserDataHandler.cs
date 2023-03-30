@@ -14,5 +14,6 @@ namespace Logic.Interfaces
         public bool Remove();
         public bool Edit(CustomerDTO customerDTO);
         public List<User> GetAll();
+        public bool IsEmailUsed(string email);
     }
 }

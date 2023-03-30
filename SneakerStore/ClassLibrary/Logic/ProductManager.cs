@@ -11,7 +11,6 @@ namespace Logic.Logic
 {
     public class ProductManager
     {
-        //ProductDataHandler productDataHandler = new ProductDataHandler();
 
         IProductDataHandler productDataHandler;
         public ProductManager(IProductDataHandler productDb)

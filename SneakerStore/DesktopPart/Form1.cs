@@ -1,3 +1,5 @@
+using DAL.DBs;
+using Logic.Interfaces;
 using Logic.Logic;
 using Logic.Models;
 
@@ -10,8 +12,8 @@ namespace DesktopPart
         public Form1()
         {
             InitializeComponent();     
-            productManager = new ProductManager();
-            products = productManager.GetAllProducts();
+            productManager = new ProductManager(new ProductDataHandler());
+            products = productManager.GetAll();
         }     
         
         private void Form1_Load_1(object sender, EventArgs e)

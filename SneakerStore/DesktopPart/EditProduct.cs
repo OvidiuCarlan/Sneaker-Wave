@@ -1,4 +1,5 @@
-﻿using Logic.Logic;
+﻿using DAL.DBs;
+using Logic.Logic;
 using Logic.Models;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace DesktopPart
         {
             InitializeComponent();
 
-            productManager = new ProductManager();
+            productManager = new ProductManager(new ProductDataHandler());
 
             tbBrand.Text = product.Brand;
             tbName.Text = product.Name;

@@ -25,6 +25,7 @@ namespace DAL.DBs
                 cmd.Parameters.AddWithValue("image", product.Image);
                 conn.Open();
                 int rowsAffected = cmd.ExecuteNonQuery();
+                conn.Close();
                 return rowsAffected == 1;
             }
         }
@@ -39,6 +40,7 @@ namespace DAL.DBs
                 cmd.Parameters.AddWithValue("id", id);
                 conn.Open();
                 int rowsAffected = cmd.ExecuteNonQuery();
+                conn.Close();
                 return rowsAffected == 1;
             }
         }
@@ -62,6 +64,7 @@ namespace DAL.DBs
 
                 conn.Open();
                 int rowsAffected = cmd.ExecuteNonQuery();
+                conn.Close();
                 return rowsAffected == 1;
             }
         }
@@ -92,6 +95,7 @@ namespace DAL.DBs
 
                     products.Add(product);
                 }
+                conn.Close();
                 return products;
             }
         }
