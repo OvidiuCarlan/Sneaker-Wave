@@ -1,5 +1,6 @@
 ﻿using Logic.DTOs;
 using Logic.Interfaces;
+using Logic.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +53,11 @@ namespace Logic.Logic
                 throw new Exception("Password is not correct");
             }
             return true;
+        }
+        public Customer GetCustomerByEmail(string email)
+        {
+            Customer customer = new Customer(_userDataHandler.GetCustomerByEmail(email));
+            return customer;
         }
         public void RemoveUser()
         {

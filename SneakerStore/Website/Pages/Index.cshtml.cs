@@ -2,11 +2,13 @@
 using Logic.Interfaces;
 using Logic.Logic;
 using Logic.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Website.Pages
 {
+    [AllowAnonymous]
     public class IndexModel : PageModel
     {        
         private readonly ILogger<IndexModel> _logger;

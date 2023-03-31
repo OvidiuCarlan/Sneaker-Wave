@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logic.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -19,6 +20,14 @@ namespace Logic.Models
         public Customer(int id, string firstName, string lastName, string email, string salt, string password) : base(id, firstName, lastName, email, salt,  password)
         {
             this.phone = phone;
+        }
+        public Customer(CustomerDTO dto) : base(dto.Id, dto.firstName, dto.lastName, dto.email)
+        {
+            this.phone = dto.phone;
+        }
+        public Customer() : base(0,"", "", "")
+        {
+            this.phone = "";
         }
     }
 }

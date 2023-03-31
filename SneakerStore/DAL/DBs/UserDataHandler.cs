@@ -123,7 +123,39 @@ namespace DAL.DBs
             }
             return (password, salt);
         }
-        
+
+        /// <summary>
+        /// This looks for a specific email in the database and returns the user data that matches the email given.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public CustomerDTO GetCustomerByEmail(string email)
+        {
+            CustomerDTO dto = new CustomerDTO();
+
+            using (SqlConnection conn = DBConnection.CreateConnection())
+            {
+                string sql = "SELECT * FROM [Users] WHERE Email = @email";
+                SqlCommand cmd = new SqlCommand(sql,conn);
+                cmd.Parameters.AddWithValue("email", email);
+                conn.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if(reader.Read())
+                    {
+                        dto.Id = reader.GetInt32(0);
+                        dto.firstName = reader.GetString(1);
+                        dto.lastName = reader.GetString(2);
+                        dto.email = reader.GetString(3);
+                        dto.phone = reader.GetString(4);
+                    }
+                }
+                conn.Close();
+            }
+            return dto;
+        }
+
         /// <summary>
         /// This method removes user data from database
         /// </summary>

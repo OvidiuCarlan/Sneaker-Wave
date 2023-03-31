@@ -39,5 +39,14 @@ namespace Logic.Models
             this.salt = salt;
             this.password = password;
         }
+        public User(int id, string firstName, string lastName, string email)
+        {
+            this.id = id;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+            this.salt = "";
+            this.password = "";
+        }
     }
 }

@@ -16,5 +16,6 @@ namespace Logic.Interfaces
         public List<User> GetAll();
         public bool IsEmailUsed(string email);
         public (string password, string salt) GetPasswordAndSaltByEmail(string email);
+        public CustomerDTO GetCustomerByEmail(string email);
     }
 }

@@ -37,7 +37,7 @@ namespace Website.Pages
             }
             return Page();
         }
-        public void AddUser(CustomerDTO customer)
+        private void AddUser(CustomerDTO customer)
         {
             UserManager userManager = new UserManager(new UserDataHandler());
             userManager.AddUser(customer);

@@ -1,8 +1,23 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Login";
+        options.AccessDeniedPath = "/Error";
+    });
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -18,6 +33,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseSession();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

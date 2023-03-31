@@ -11,17 +11,17 @@
     <form method="post">
 
         <div class="field">
-            <label asp-for="customer.email">Email</label>
-            <input asp-for="customer.email" type="email" placeholder="Enter Email" required>
-            <span asp-validation-for="customer.email"></span>
+            <label asp-for="customerDto.email">Email</label>
+            <input asp-for="customerDto.email" type="email" placeholder="Enter Email" required>
+            <span asp-validation-for="customerDto.email"></span>
         </div>
         <div class="field">
-            <label asp-for="customer.password">Password</label>
-            <input asp-for="customer.password" type="password" placeholder="Enter Password" required>
-            <span asp-validation-for="customer.password"></span>
+            <label asp-for="customerDto.password">Password</label>
+            <input asp-for="customerDto.password" type="password" placeholder="Enter Password" required>
+            <span asp-validation-for="customerDto.password"></span>
         </div>
         <div class="field">
-            <span asp-validation-for="customer.email" class="error-message">@Model.errorMessage</span>
+            <span asp-validation-for="customerDto.email" class="error-message">@Model.errorMessage</span>
         </div>
 
         <div class="field">
@@ -31,10 +31,10 @@
             <a asp-page="Register" class="go-to-register">Sign up first</a>
         </div>
 
-        <input type="hidden" asp-for="customer.firstName" value="000" />
-        <input type="hidden" asp-for="customer.lastName" value="000" />
-        <input type="hidden" asp-for="customer.phone" value="000" />
-        <input type="hidden" asp-for="customer.salt" value="000" />
+        <input type="hidden" asp-for="customerDto.firstName" value="000" />
+        <input type="hidden" asp-for="customerDto.lastName" value="000" />
+        <input type="hidden" asp-for="customerDto.phone" value="000" />
+        <input type="hidden" asp-for="customerDto.salt" value="000" />
         
     </form>
 </section>
