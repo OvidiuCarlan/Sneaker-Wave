@@ -30,6 +30,11 @@ namespace Logic.Logic
         {
             productDataHandler.Edit(product.ProductToProductDTO());
         }
+        public Product GetProductById(int id)
+        {
+            Product product = new Product(productDataHandler.GetProductById(id));
+            return product;
+        }
         public List<Product> GetAll()
         {
             List<Product> products = new List<Product>();

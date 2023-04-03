@@ -19,7 +19,7 @@ https://dl.dropboxusercontent.com/s/mkwgt893vi2qh2r/AIR%20JORDAN%201%20HIGH%20OG
         foreach(Product product in Model.products)
         {
             <div class="card">
-                <a asp-page="/ProductInfo"><img src="@product.Image" /></a>
+                <a asp-page="/ProductInfo" asp-route-id="@product.Id"><img src="@product.Image" /></a>
                 <p class="product-name">@product.Name</p>
                 <p class="product-price">€ @product.Price</p>
 

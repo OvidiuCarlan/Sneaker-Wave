@@ -99,5 +99,35 @@ namespace DAL.DBs
                 return products;
             }
         }
+        public ProductDTO GetProductById(int id)
+        {
+            ProductDTO dto = new ProductDTO();
+
+            using (SqlConnection conn = DBConnection.CreateConnection())
+            {
+                string sql = "SELECT * FROM [Products] WHERE Id = @id";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("Id", id);
+                conn.Open();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {                        
+                            dto.Id = reader.GetInt32(0);
+                            dto.Brand = reader.GetString(1);
+                            dto.Name = reader.GetString(2);
+                            dto.Price = reader.GetDouble(3);
+                            dto.Size = reader.GetString(4);
+                            dto.Category = reader.GetString(5);
+                            dto.Quantity = reader.GetInt32(6);
+                            dto.Image = reader.GetString(7);                        
+                    }
+                }
+                conn.Close();
+            }
+            return dto;
+        }
     }
 }

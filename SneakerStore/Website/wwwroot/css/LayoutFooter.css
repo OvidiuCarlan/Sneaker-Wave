@@ -3,12 +3,28 @@
     padding: 0;
     box-sizing:border-box;
 }
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    min-height: 100%;
+    position: relative;
+}
+
 .footer {
     background-color: #fff;
     font-weight: 400;
     padding: 40px 0;
     box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    position: relative;
+    position: absolute;
     bottom: 0;
     width: 100%;
     clear: both;

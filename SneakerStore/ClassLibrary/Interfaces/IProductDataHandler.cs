@@ -13,5 +13,6 @@ namespace Logic.Interfaces
         public bool Remove(int id);
         public bool Edit(ProductDTO product);
         public List<ProductDTO> GetAll();
+        public ProductDTO GetProductById(int id);
     }
 }

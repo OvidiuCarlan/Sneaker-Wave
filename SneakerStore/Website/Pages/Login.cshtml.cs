@@ -24,22 +24,35 @@ namespace Website.Pages
 
         public async Task<IActionResult> OnPost()
         {
-            if (ModelState.IsValid && IsUserValid())
+            if (ModelState.IsValid)
             {
-                Customer customer = userManager.GetCustomerByEmail(customerDto.email);
-
-                ClaimsIdentity claimsIdentity = new ClaimsIdentity(
-                    new Claim[]
+                try
+                {
+                    if (IsUserValid())
                     {
+                        Customer customer = userManager.GetCustomerByEmail(customerDto.email);
+
+                        ClaimsIdentity claimsIdentity = new ClaimsIdentity(
+                            new Claim[]
+                            {
                         new Claim("id", customer.Id.ToString()),
                         new Claim("firstName", customer.FirstName),
                         new Claim("lastName", customer.LastName),
                         new Claim("email", customer.Email),
-                    }, CookieAuthenticationDefaults.AuthenticationScheme);
-                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                await HttpContext.SignInAsync(claimsPrincipal);                    
+                            }, CookieAuthenticationDefaults.AuthenticationScheme);
+                        ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                        await HttpContext.SignInAsync(claimsPrincipal);
 
-                return RedirectToPage("Profile");
+                        return RedirectToPage("Profile");
+                    }                   
+                    return Page();
+                }
+                catch (Exception e)
+                {
+                    errorMessage = e.Message;
+                    return Page();
+                }                                  
+                
             }
             else
             {
