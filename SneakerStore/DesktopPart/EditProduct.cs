@@ -28,9 +28,9 @@ namespace DesktopPart
             tbBrand.Text = product.Brand;
             tbName.Text = product.Name;
             tbPrice.Text = product.Price.ToString();
-            tbSize.Text = product.Size;
+            //tbSize.Text = product.Size;
             tbCategory.Text = product.Category;
-            tbQuantity.Text = product.Quantity.ToString();
+            //tbQuantity.Text = product.Quantity.ToString();
             tbImage.Text = product.Image;
             productId = product.Id;
 
@@ -47,7 +47,7 @@ namespace DesktopPart
             int quantity = Convert.ToInt32(tbQuantity.Text);
             string image = tbImage.Text;
 
-            Product newProduct = new Product(productId ,brand, name, price, size, category, quantity, image);
+            Product newProduct = new Product(productId ,brand, name, price, category, image);
 
             productManager.EditProduct(newProduct);
             _form1.RefreshProductsDgv();

@@ -32,7 +32,7 @@ namespace DesktopPart
             int quantity = Convert.ToInt32(tbQuantity.Text);
             string image = tbImage.Text;
 
-            Product product = new Product(brand, name, price, size, category, quantity, image);
+            Product product = new Product(brand, name, price, category, image);
             productManager.AddProduct(product);
 
             MessageBox.Show("Product added");
@@ -45,9 +45,9 @@ namespace DesktopPart
             tbBrand.Clear();
             tbName.Clear();
             tbPrice.Clear();
-            tbSize.Clear();
+            //tbSize.Clear();
             tbCategory.Clear();
-            tbQuantity.Clear();
+            //tbQuantity.Clear();
             tbImage.Clear();
         }
         public void RefreshProductsDgv()

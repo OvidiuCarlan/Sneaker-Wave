@@ -19,9 +19,7 @@ namespace DAL.DBs
                 cmd.Parameters.AddWithValue("brand", product.Brand);
                 cmd.Parameters.AddWithValue("name", product.Name);
                 cmd.Parameters.AddWithValue("price", product.Price);
-                cmd.Parameters.AddWithValue("size", product.Size);
                 cmd.Parameters.AddWithValue("category", product.Category);
-                cmd.Parameters.AddWithValue("quantity", product.Quantity);
                 cmd.Parameters.AddWithValue("image", product.Image);
                 conn.Open();
                 int rowsAffected = cmd.ExecuteNonQuery();
@@ -56,9 +54,9 @@ namespace DAL.DBs
                 cmd.Parameters.AddWithValue("brand", product.Brand);
                 cmd.Parameters.AddWithValue("name", product.Name);
                 cmd.Parameters.AddWithValue("price", product.Price);
-                cmd.Parameters.AddWithValue("size", product.Size);
+                //cmd.Parameters.AddWithValue("size", product.Size);
                 cmd.Parameters.AddWithValue("category", product.Category);
-                cmd.Parameters.AddWithValue("quantity", product.Quantity);
+                //cmd.Parameters.AddWithValue("quantity", product.Quantity);
                 cmd.Parameters.AddWithValue("image", product.Image);
 
 
@@ -88,9 +86,9 @@ namespace DAL.DBs
                     product.Brand = reader.GetString("Brand");
                     product.Name = reader.GetString("Name");
                     product.Price = reader.GetDouble("Price");
-                    product.Size = reader.GetString("Size");
+                    //product.Size = reader.GetString("Size");
                     product.Category = reader.GetString("Category");
-                    product.Quantity = reader.GetInt32("Quantity");
+                    //product.Quantity = reader.GetInt32("Quantity");
                     product.Image = reader.GetString("Image");
 
                     products.Add(product);
@@ -108,7 +106,7 @@ namespace DAL.DBs
                 string sql = "SELECT * FROM [Products] WHERE Id = @id";
                 SqlCommand cmd = new SqlCommand(sql, conn);
 
-                cmd.Parameters.AddWithValue("Id", id);
+                cmd.Parameters.AddWithValue("id", id);
                 conn.Open();
 
                 using (var reader = cmd.ExecuteReader())
@@ -119,15 +117,38 @@ namespace DAL.DBs
                             dto.Brand = reader.GetString(1);
                             dto.Name = reader.GetString(2);
                             dto.Price = reader.GetDouble(3);
-                            dto.Size = reader.GetString(4);
-                            dto.Category = reader.GetString(5);
-                            dto.Quantity = reader.GetInt32(6);
-                            dto.Image = reader.GetString(7);                        
+                            //dto.Size = reader.GetString(4);
+                            dto.Category = reader.GetString(4);
+                            //dto.Quantity = reader.GetInt32(6);
+                            dto.Image = reader.GetString(5);                        
                     }
                 }
                 conn.Close();
             }
             return dto;
+        }
+        public List<string> GetSizesById(int id)
+        {
+            List<string> sizes = new List<string>();
+
+            using(SqlConnection conn = DBConnection.CreateConnection())
+            {
+                string sql = "SELECT Size FROM [ProductSizes] WHERE Product_id = @id ORDER BY Size";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("id", id);
+                conn.Open();
+
+                using(SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {                        
+                        sizes.Add(reader.GetString(0));                       
+                    }
+                }
+                conn.Close();
+            }
+            return sizes;
         }
     }
 }

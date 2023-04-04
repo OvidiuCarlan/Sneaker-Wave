@@ -45,9 +45,9 @@ namespace Logic.Logic
             }
             return products;
         }
-        public void GetAllAvailableProducts()
+        public List<string> GetSizesById(int id)
         {
-
+            return productDataHandler.GetSizesById(id);
         }
     }
 }

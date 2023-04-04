@@ -13,9 +13,9 @@ namespace Logic.Models
         private string brand;
         private string name;
         private double price;
-        private string size;
+        //private string size;
         private string category;
-        private int quantity;
+        //private int quantity;
         private string image;
 
 
@@ -24,32 +24,32 @@ namespace Logic.Models
         public string? Brand { get { return brand; } }
         public string? Name { get { return name; } }
         public double Price { get { return price; } }
-        public string? Size { get { return size; } }
+        //public string? Size { get { return size; } }
         public string? Category { get { return category; } }
-        public int Quantity { get { return quantity; } }
+        //public int Quantity { get { return quantity; } }
         public string Image { get { return image; } }
 
 
-        public Product(string brand, string name, double price, string size, string category, int quantity, string image)
+        public Product(string brand, string name, double price, string category, string image)
         {
             id = 0;
             this.brand = brand;
             this.name = name;
             this.price = price;
-            this.size = size;
+            //this.size = size;
             this.category = category;
-            this.quantity = quantity;
+            //this.quantity = quantity;
             this.image = image;
         }
-        public Product(int id, string brand, string name, double price, string size, string category, int quantity, string image)
+        public Product(int id, string brand, string name, double price, string category, string image)
         {
             this.id = id;
             this.brand = brand;
             this.name = name;
             this.price = price;
-            this.size = size;
+            //this.size = size;
             this.category = category;
-            this.quantity = quantity;
+            //this.quantity = quantity;
             this.image = image;
         }
         public Product()
@@ -58,9 +58,9 @@ namespace Logic.Models
             brand = "";
             name = "";
             price = 0;
-            size = "";
+            //size = "";
             category = "";
-            quantity = 0;
+            //quantity = 0;
             image = "";
         }
 
@@ -72,9 +72,9 @@ namespace Logic.Models
                 Brand = brand,
                 Name = name,
                 Price = price,
-                Size = size,
+                //Size = size,
                 Category = category,
-                Quantity = quantity,
+                //Quantity = quantity,
                 Image = image
             };
         }
@@ -84,9 +84,9 @@ namespace Logic.Models
             brand = productDTO.Brand;
             name = productDTO.Name;
             price = productDTO.Price;
-            size = productDTO.Size;
+            //size = productDTO.Size;
             category = productDTO.Category;
-            quantity = productDTO.Quantity;
+            //quantity = productDTO.Quantity;
             image = productDTO.Image;
         }
     }
