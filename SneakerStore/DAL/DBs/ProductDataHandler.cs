@@ -117,9 +117,7 @@ namespace DAL.DBs
                             dto.Brand = reader.GetString(1);
                             dto.Name = reader.GetString(2);
                             dto.Price = reader.GetDouble(3);
-                            //dto.Size = reader.GetString(4);
                             dto.Category = reader.GetString(4);
-                            //dto.Quantity = reader.GetInt32(6);
                             dto.Image = reader.GetString(5);                        
                     }
                 }

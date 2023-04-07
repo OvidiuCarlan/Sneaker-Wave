@@ -12,11 +12,11 @@
 <form method="post" class="container">
     <div class="product-container">
         <div class="image-container">
-            <img src="@Model.product.Image">
+            <img src="@Model.productDto.Image">
         </div>
         <div class="data-container">
-            <h2>@Model.product.Name</h2>
-            <h3>€ @Model.product.Price</h3>
+            <h2>@Model.productDto.Name</h2>
+            <h3>€ @Model.productDto.Price</h3>
 
             @*Start of sizes drop down menu*@
             <label for="shoe-sizes" class="size-label">Available EU sizes:</label>        
@@ -29,13 +29,14 @@
             @*End of sizes drop down menu*@
 
             <label class="quantity-input-label">Select Quantity:</label>
-            <input type="number" id="quantity" name="productQuantity" min="1">
+            <input type="number" id="quantity" name="productQuantity" min="1">   
 
-            @**@
-            <input type="hidden" name="productId" value="@Model.product.Id">
-            <input type="hidden" name="productName" value="@Model.product.Name">
-            <input type="hidden" name="productPrice" value="@Model.product.Price">
-            @**@
+            <input type="hidden" id="id" name="id" value="@Model.productDto.Id">
+            <input type="hidden" asp-for="productDto.Name" value="000" />
+            <input type="hidden" asp-for="productDto.Brand" value="000" />
+            <input type="hidden" asp-for="productDto.Image" value="000" />
+            <input type="hidden" asp-for="productDto.Category" value="000" />
+
 
             <button type="submit" class="buy-button">
                 Buy now

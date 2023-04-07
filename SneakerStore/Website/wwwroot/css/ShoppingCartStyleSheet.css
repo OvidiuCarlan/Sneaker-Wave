@@ -1,2 +1,82 @@
 ﻿body {
+    /*justify-content: center;*/
+}
+.container {
+    margin: 30px auto;
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    width: 80vw;
+}
+.table {
+    border: none;
+    border-collapse: collapse;    
+}
+.cart_head th{
+    padding: 15px 25px 15px 25px;
+}
+.first_card_item_col img {
+    width: 200px;
+}
+.first_card_item_col{
+    display: flex;  
+    align-items: center;
+}
+.first_card_item_col h3{
+    max-width: 200px;
+}
+.cart{
+    margin-right: 30px;
+}
+.cart_head {
+    background-color: #ffffff;
+}
+.cart_totals {
+    background-color: #ffffff;
+    margin-bottom: 30px;
+}
+.bonusCard {
+    background-color: #ffffff;
+    margin-bottom: 30px;
+}
+tr:nth-child(even) {
+    background-color: #ffffff;
+}
+.checkout {
+    background-color: black;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 75%;
+    width: 100%;
+}
+
+.checkout:hover {
+    opacity: 100%;
+}
+.cart_totals *{
+    padding: 25px;
+}
+.bonusCard * {
+    padding: 25px;
+}
+.card_details{
+    max-width: 30vw;
+}
+td h3{
+    text-align: center;
+    justify-content: center;
+}
+tr .first{
+    text-align: start;
+}
+.cart_body tr{
+    max-height: 220px;
 }
