@@ -38,7 +38,7 @@ namespace Website.Pages
             {
                 return Page();
             }
-            ShoppingCartItem item = new ShoppingCartItem(productId, productName, productSize, productPrice, productQuantity);
+            ShoppingCartItem item = new ShoppingCartItem(product, productSize, productQuantity);
 
             AddToShoppingCart(item);
 
