@@ -45,9 +45,7 @@ namespace DesktopPart
             tbBrand.Clear();
             tbName.Clear();
             tbPrice.Clear();
-            //tbSize.Clear();
             tbCategory.Clear();
-            //tbQuantity.Clear();
             tbImage.Clear();
         }
         public void RefreshProductsDgv()

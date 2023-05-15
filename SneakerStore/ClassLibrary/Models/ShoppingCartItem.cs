@@ -8,15 +8,19 @@ namespace Logic.Models
 {
     public class ShoppingCartItem
     {
-        public Product product { get; set; }
-        public string Size { get; set; }
-        public int Quantity { get; set; }
+        private Product product;
+        private string size;
+        private int quantity;
+
+        public Product Product { get { return product; } }
+        public string Size { get { return size; } }
+        public int Quantity { get { return quantity; } }
 
         public ShoppingCartItem(Product product, string productSize, int productQuantity)
         {
             this.product = product;
-            this.Size = productSize;
-            this.Quantity = productQuantity;
+            this.size = productSize;
+            this.quantity = productQuantity;
         }
     }
     

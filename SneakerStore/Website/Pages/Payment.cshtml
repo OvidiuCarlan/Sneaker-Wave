@@ -1,0 +1,41 @@
+﻿@page
+@model Website.Pages.PaymentModel
+@{
+}
+
+<link rel="stylesheet" href="~/css/PaymentStyleSheet.css" asp-append-version="true" />
+
+<section class="container">
+    <header>PAYMENT</header>
+
+    <form method="post" class="payment-form">
+        <img src="/Images/card_img.png">
+        <div class="field">
+            <label asp-for="card.Name"></label>
+            <span asp-validation-for="card.Name"></span>
+            <input type="text" placeholder="Name on card" asp-for="card.Name" required>
+        </div>
+        <div class="field">
+            <label asp-for="card.Number"></label>
+            <span asp-validation-for="card.Number"></span>
+            <input type="text" placeholder="Name on card" asp-for="card.Number" required>
+        </div>
+        <div class="field">
+            <label asp-for="card.SecurityNumber"></label>
+            <span asp-validation-for="card.SecurityNumber"></span>
+            <input type="text" placeholder="Name on card" asp-for="card.SecurityNumber" required>
+        </div>
+        <div class="field">
+            <label asp-for="card.ExpirationDate"></label>
+            <span asp-validation-for="card.ExpirationDate"></span>
+            <input type="month" placeholder="Name on card" asp-for="card.ExpirationDate" required>
+        </div>
+        <div class="field">
+            <button type="submit">Finish order</button>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

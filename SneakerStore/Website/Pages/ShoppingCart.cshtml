@@ -67,65 +67,22 @@
                     <h3>You have a ton of points. Use them all.</h3>
                 </div>
                 <div class="cart_actions">
-                    <button method="post" class="checkout">CHECKOUT</button>
+                    <a asp-page="/Checkout" class="checkout-button">Checkout</a>
                 </div>
             </div>
         </aside>
     }
     else
     {
-        <h1>There are no items in the shopping cart</h1>
+        <div class="empty_cart">
+            <img src="/Images/empty-cart.png">
+            <h1 class="empty_cart">There are no items in the shopping cart</h1>
+            <a asp-page="/Index" class="continue_shopping">Continue shopping</a>
+        </div>
+        
     }
 
 </form>
 
 
-@*@if (Model.cartItems.Count() != 0)
-{
-    double total = 0;
-    int counter = 1;
 
-    <div class="products_lsit">
-
-
-        <div class="product_header">
-            <h3>PRODUCTS</h3>
-            <h3>SIZE</h3>
-            <h3>PRICE</h3>
-            <h3>QUANTITY</h3>
-            <h3>TOTAL</h3>
-        </div>
-
-        @foreach (ShoppingCartItemDTO item in Model.cartItems)
-        {
-            double subTotal = @item.Quantity * @item.Product.Price;
-            total += subTotal;
-
-            <div class="product_container @((counter++ % 2 != 0) ? "white-bg" : "grey-bg")">
-                <div class="product">
-                    <img src="@item.Product.Image">
-                    <h3>@item.Product.Name</h3>
-                </div>
-                <h3>@item.Size</h3>
-                <h3>@item.Product.Price €</h3>
-                <h3>@item.Quantity</h3>
-                <h3>@subTotal €</h3>
-            </div>
-        }
-    </div>
-
-    <div class="options_list">
-        <div class="total_container">
-            <h3>Total   @total€</h3>
-            <h3>Delivery costs are not included.</h3>
-        </div>
-        <div class="bonus_card_points">
-            <h3>You have a ton of points.</h3>
-        </div>
-        <button method="post">Order now</button>
-    </div>
-}
-else
-{
-    <h1>There are no items in the shopping cart</h1>
-}*@

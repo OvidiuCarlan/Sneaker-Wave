@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Logic
 {
-    public class UserManager
+    public class UserManager : IUserManager
     {
         private readonly IUserDataHandler _userDataHandler;
         public UserManager (IUserDataHandler userDb)
@@ -58,10 +58,6 @@ namespace Logic.Logic
         {
             Customer customer = new Customer(_userDataHandler.GetCustomerByEmail(email));
             return customer;
-        }
-        public void RemoveUser()
-        {
-
         }
     }
 }

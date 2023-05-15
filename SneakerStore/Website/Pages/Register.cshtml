@@ -27,6 +27,11 @@
             <input type="email" placeholder="Email" asp-for="customer.email" required>            
         </div>
         <div class="field">
+            <label asp-for="customer.phone">Phone Number</label>
+            <span asp-validation-for="customer.phone"></span>
+            <input type="text" placeholder="Phone Number" asp-for="customer.phone" required>
+        </div>
+        <div class="field">
             <label asp-for="customer.password">Password</label>
             <span asp-validation-for="customer.password"></span>            
             <input type="password" placeholder="Password" asp-for="customer.password" required>            
@@ -34,7 +39,6 @@
         <div class="field">
             <span asp-validation-for="customer.email" class="error-message" >@Model.errorMessage</span>
         </div>
-        <input type="hidden" asp-for="customer.phone" value="000" />
         <input type="hidden" asp-for="customer.salt" value="000" />
 
 
@@ -48,5 +52,5 @@
 </section> 
 
 @section Scripts {
-    <   partial name="_ValidationScriptsPartial" />
+    <partial name="_ValidationScriptsPartial"/>
 }

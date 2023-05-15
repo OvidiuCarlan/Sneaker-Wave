@@ -1,3 +1,6 @@
+using DAL.DBs;
+using Logic.Interfaces;
+using Logic.Logic;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +15,10 @@ builder.Services.AddSession(options =>
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<IProductDataHandler, ProductDataHandler>();
+builder.Services.AddScoped<IProductManager, ProductManager>();
+builder.Services.AddScoped<IUserDataHandler, UserDataHandler>();
+builder.Services.AddScoped<IUserManager, UserManager>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {

@@ -11,15 +11,13 @@ namespace Logic.Models
         private int id;
         private string city;
         private string street;
-        private string streetNumber;
-        private string streetNumberAddOn;
+        private string houseNumber;
         private string zipCode;
 
         public int Id { get { return id; } }
         public string City { get { return city; } }
         public string Sreet { get { return street; } }
-        public string StreetNumber { get { return streetNumber; } }
-        public string StreetNumberAddOn { get { return streetNumberAddOn; } }
+        public string HouseNumber { get { return houseNumber; } }
         public string Zipcode { get { return zipCode; } }
 
         public Address()
@@ -27,25 +25,22 @@ namespace Logic.Models
             id = 0;
             city = "";
             street = "";
-            streetNumber = "";
-            streetNumberAddOn = "";
+            houseNumber = "";
             zipCode = "";
         }
-        public Address(string city, string street, string streetNumber, string streetNumberAddOn, string zipCode)
+        public Address(string city, string street, string houseNumber, string zipCode, string phoneNumber)
         {
             this.city = city;
             this.street = street;
-            this.streetNumber = streetNumber;
-            this.streetNumberAddOn = streetNumberAddOn;
+            this.houseNumber = houseNumber;
             this.zipCode = zipCode;
         }
-        public Address(int id, string city, string street, string streetNumber, string streetNumberAddOn, string zipCode)
+        public Address(int id, string city, string street, string houseNumber, string zipCode, string phoneNumber)
         {
             this.id = id;
             this.city = city;
             this.street = street;
-            this.streetNumber = streetNumber;
-            this.streetNumberAddOn = streetNumberAddOn;
+            this.houseNumber = houseNumber;
             this.zipCode = zipCode;
         }
     }

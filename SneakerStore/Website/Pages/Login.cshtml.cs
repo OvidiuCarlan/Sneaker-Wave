@@ -1,5 +1,6 @@
 using DAL.DBs;
 using Logic.DTOs;
+using Logic.Interfaces;
 using Logic.Logic;
 using Logic.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -15,8 +16,14 @@ namespace Website.Pages
         [BindProperty]
         public CustomerDTO customerDto { get; set; }
         public string errorMessage;
-        UserManager userManager = new UserManager(new UserDataHandler());
+        private readonly ILogger<IndexModel> _logger;
 
+        private readonly IUserManager userManager;
+        public LoginModel(ILogger<IndexModel> logger, IUserManager _userManager)
+        {
+            userManager = _userManager;
+            _logger = logger;
+        }
         public void OnGet()
         {
             customerDto = new CustomerDTO();

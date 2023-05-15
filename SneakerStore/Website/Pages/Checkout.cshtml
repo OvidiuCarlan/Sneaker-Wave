@@ -1,0 +1,40 @@
+﻿@page
+@model Website.Pages.CheckoutModel
+@{
+    ViewData["Title"] = "Sneaker Wave";
+}
+<link rel="stylesheet" href="~/css/CheckoutStyleSheet.css" asp-append-version="true" />
+
+<section class="container">
+    <header>CHECKOUT</header>
+
+    <form  method="post", class="form">
+        <div class="field">
+            <label asp-for="address.City">City</label>
+            <span asp-validation-for="address.City"></span>
+            <input type="text" placeholder="City" asp-for="address.City" required>
+        </div>
+        <div class="field">
+            <label asp-for="address.Street">Street</label>
+            <span asp-validation-for="address.Street"></span>
+            <input type="text" placeholder="Street" asp-for="address.Street" required>
+        </div>
+        <div class="field">
+            <label asp-for="address.StreetNumber">Street Number</label>
+            <span asp-validation-for="address.StreetNumber"></span>
+            <input type="text" placeholder="Street Number" asp-for="address.StreetNumber" required>
+        </div>          
+        <div class="field">
+            <label asp-for="address.Zipcode">Zipcode</label>
+            <span asp-validation-for="address.Zipcode"></span>
+            <input type="text" placeholder="Zipcode" asp-for="address.Zipcode" required">
+        </div>
+        <div class="field">
+            <button type="submit">Continue to payment</button>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial"/>
+}

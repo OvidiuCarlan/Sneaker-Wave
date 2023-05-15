@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Logic.Logic
 {
-    public class ProductManager
+    public class ProductManager : IProductManager
     {
 
-        IProductDataHandler productDataHandler;
+        private readonly IProductDataHandler productDataHandler;
         public ProductManager(IProductDataHandler productDb)
         {
             productDataHandler = productDb;
@@ -40,6 +40,10 @@ namespace Logic.Logic
         public List<Product> GetAll()
         {
             List<Product> products = new List<Product>();
+
+            // is product not sold out
+
+            // is product alreday in some other card
 
             foreach (ProductDTO productDTO in productDataHandler.GetAll())
             {

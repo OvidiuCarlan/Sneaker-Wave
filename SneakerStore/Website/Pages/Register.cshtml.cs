@@ -1,5 +1,6 @@
 using DAL.DBs;
 using Logic.DTOs;
+using Logic.Interfaces;
 using Logic.Logic;
 using Logic.Models;
 using Microsoft.AspNetCore.Identity;
@@ -14,7 +15,15 @@ namespace Website.Pages
         [BindProperty]
         public CustomerDTO customer { get; set; }
         public string errorMessage;
-        
+        private readonly ILogger<IndexModel> _logger;
+
+        private readonly IUserManager userManager;
+        public RegisterModel(ILogger<IndexModel> logger, IUserManager _userManager)
+        {
+            userManager = _userManager;
+            _logger = logger;
+        }
+
         public void OnGet()
         {
             customer = new CustomerDTO();
@@ -26,6 +35,7 @@ namespace Website.Pages
             {
                 try
                 {
+                    UserDataValidation.RegisterValidation(customer);
                     AddUser(customer);
                     return RedirectToPage("Login");
                 }
@@ -39,7 +49,6 @@ namespace Website.Pages
         }
         private void AddUser(CustomerDTO customer)
         {
-            UserManager userManager = new UserManager(new UserDataHandler());
             userManager.AddUser(customer);
         }
     }

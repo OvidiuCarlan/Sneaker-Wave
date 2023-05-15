@@ -13,7 +13,7 @@ namespace DAL.DBs
         {
             using (SqlConnection conn = DBConnection.CreateConnection())
             {
-                string sql = "INSERT INTO [Products](Brand, Name, Price, Size, Category, Quantity, Image) VALUES(@brand, @name, @price, @size, @category, @quantity, @image)";
+                string sql = "INSERT INTO [Products](Brand, Name, Price, Category, Image) VALUES(@brand, @name, @price, @category, @image)";
                 SqlCommand cmd = new SqlCommand(sql, conn);
 
                 cmd.Parameters.AddWithValue("brand", product.Brand);

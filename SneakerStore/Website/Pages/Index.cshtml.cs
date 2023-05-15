@@ -14,14 +14,13 @@ namespace Website.Pages
         private readonly ILogger<IndexModel> _logger;
                 
         public List<Product> products { get; set; }
-        public ProductManager productManager { get; set; }
-        
-
-        public IndexModel(ILogger<IndexModel> logger)
+        private readonly IProductManager productManager;
+             
+        public IndexModel(ILogger<IndexModel> logger, IProductManager _productManager)
         {
+            productManager = _productManager;
             _logger = logger;
             products = new List<Product>();
-            productManager = new ProductManager(new ProductDataHandler());
         }
 
         public void OnGet()
