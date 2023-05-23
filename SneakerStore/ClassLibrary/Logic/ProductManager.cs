@@ -41,10 +41,6 @@ namespace Logic.Logic
         {
             List<Product> products = new List<Product>();
 
-            // is product not sold out
-
-            // is product alreday in some other card
-
             foreach (ProductDTO productDTO in productDataHandler.GetAll())
             {
                 products.Add(new Product(productDTO));

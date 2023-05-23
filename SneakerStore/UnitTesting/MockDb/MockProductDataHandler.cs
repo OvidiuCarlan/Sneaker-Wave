@@ -38,7 +38,16 @@ namespace UnitTesting.MockDb
 
         public List<string> GetSizesById(int id)
         {
-            throw new NotImplementedException();
+            List<string> expectedSizes = new List<string>
+            {
+                "44",
+                "45"
+            };
+            if (id == 1)
+            {
+                return expectedSizes;
+            }
+            return null;
         }
 
         public bool Remove(int id)

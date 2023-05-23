@@ -1,12 +1,7 @@
 ﻿using Logic.DTOs;
 using Logic.Interfaces;
 using Logic.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.DBs
 {
@@ -17,25 +12,70 @@ namespace DAL.DBs
         /// </summary>
         /// <param name="customerDTO">object containing user data</param>
         /// <returns>true or false depending on the outcome</returns>
+
         public bool Add(CustomerDTO customerDTO)
         {
+
             using (SqlConnection conn = DBConnection.CreateConnection())
             {
-                string sql = "INSERT INTO [Users](First_Name, Last_Name, Email, Phone, Salt, Password) VALUES (@firstName, @lastName, @email, @phone, @salt, @password)";
-                SqlCommand cmd = new SqlCommand(sql, conn);
+                string insertCustomerQuery = "INSERT INTO [Customers] (First_Name, Last_Name, Email, Phone) VALUES (@firstName, @lastName, @email, @phone);" +
+                                             "SELECT SCOPE_IDENTITY()";
+                SqlCommand cmd = new SqlCommand(insertCustomerQuery, conn);
 
-                cmd.Parameters.AddWithValue("firstName", customerDTO.firstName);
-                cmd.Parameters.AddWithValue("lastName", customerDTO.lastName);
-                cmd.Parameters.AddWithValue("email", customerDTO.email);
-                cmd.Parameters.AddWithValue("phone", customerDTO.phone);
-                cmd.Parameters.AddWithValue("salt", customerDTO.salt);
-                cmd.Parameters.AddWithValue("password", customerDTO.password);
+                cmd.Parameters.AddWithValue("@firstName", customerDTO.firstName);
+                cmd.Parameters.AddWithValue("@lastName", customerDTO.lastName);
+                cmd.Parameters.AddWithValue("@email", customerDTO.email);
+                cmd.Parameters.AddWithValue("@phone", customerDTO.phone);
+
                 conn.Open();
-                int rowsAffected = cmd.ExecuteNonQuery();
+                int customerId = Convert.ToInt32(cmd.ExecuteScalar());
+                //conn.Close();
+
+                string insertUserQuery = "INSERT INTO [Users] (Customer_Id, Salt, Password) VALUES (@customerId, @salt, @password)";
+                SqlCommand cmd2 = new SqlCommand(insertUserQuery, conn);
+
+                cmd2.Parameters.AddWithValue("@customerId", customerId);
+                cmd2.Parameters.AddWithValue("@salt", customerDTO.salt);
+                cmd2.Parameters.AddWithValue("@password", customerDTO.password);
+                int rowsAffected = cmd2.ExecuteNonQuery();
                 conn.Close();
                 return rowsAffected == 1;
             }
         }
+
+        
+        //        using (SqlTransaction transaction = conn.BeginTransaction())
+        //        {
+        //            try
+        //            {              
+        //
+        //                
+        //
+        //                transaction.Commit();
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                Console.WriteLine(ex.Message);
+        //                transaction.Rollback();
+        //            }
+        //        }
+
+        //}
+        //public bool Add(CustomerDTO customerDTO)
+        //{
+        //    using (SqlConnection conn = DBConnection.CreateConnection())
+        //    {
+        //        string sql = "INSERT INTO [Customers](First_Name, Last_Name, Email, Phone) VALUES (@firstName, @lastName, @email, @phone)";
+        //        SqlCommand cmd = new SqlCommand(sql, conn);
+
+        //        cmd.Parameters.AddWithValue("firstName", customerDTO.firstName);
+        //        cmd.Parameters.AddWithValue("lastName", customerDTO.lastName);
+        //        cmd.Parameters.AddWithValue("email", customerDTO.email);
+        //        cmd.Parameters.AddWithValue("phone", customerDTO.phone);
+        //        conn.Open();
+        //        v
+        //    }
+        //}
 
         /// <summary>
         /// This method edits new user data from the db
@@ -44,10 +84,10 @@ namespace DAL.DBs
         /// <returns>true or false depending on the outcome</returns>
         public bool Edit(CustomerDTO customerDTO)
         {
-            using(SqlConnection conn = DBConnection.CreateConnection())
+            using (SqlConnection conn = DBConnection.CreateConnection())
             {
                 string sql = "UPDATE [Users] SET First_Name = @firstName, LastName = @lastName, Email = @email, Password = @password, Phone = @phone WHERE (Id = @id)";
-                SqlCommand cmd = new SqlCommand(sql,conn);
+                SqlCommand cmd = new SqlCommand(sql, conn);
 
                 cmd.Parameters.AddWithValue("id", customerDTO.Id);
                 cmd.Parameters.AddWithValue("firstName", customerDTO.firstName);
@@ -75,17 +115,17 @@ namespace DAL.DBs
         /// <returns>true or false depending if the email exists in the db or not</returns>'
         public bool IsEmailUsed(string email)
         {
-            bool IsEmailUsed = false; 
+            bool IsEmailUsed = false;
 
-            using(SqlConnection conn = DBConnection.CreateConnection())
+            using (SqlConnection conn = DBConnection.CreateConnection())
             {
-                string sql = "SELECT COUNT(*) FROM [Users] WHERE Email = @email";
+                string sql = "SELECT COUNT(*) FROM [Customers] WHERE Email = @email";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("email", email);
                 conn.Open();
 
                 int count = (int)cmd.ExecuteScalar();
-                if(count > 0)
+                if (count > 0)
                 {
                     IsEmailUsed = true;
                 }
@@ -135,14 +175,14 @@ namespace DAL.DBs
 
             using (SqlConnection conn = DBConnection.CreateConnection())
             {
-                string sql = "SELECT * FROM [Users] WHERE Email = @email";
-                SqlCommand cmd = new SqlCommand(sql,conn);
+                string sql = "SELECT * FROM [Customers] WHERE Email = @email";
+                SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("email", email);
                 conn.Open();
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    if(reader.Read())
+                    if (reader.Read())
                     {
                         dto.Id = reader.GetInt32(0);
                         dto.firstName = reader.GetString(1);
@@ -165,5 +205,29 @@ namespace DAL.DBs
         {
             throw new NotImplementedException();
         }
+
+        //    public int GetUserId(string email)
+        //    {
+        //        int userId = 0;
+
+        //        using (SqlConnection conn = DBConnection.CreateConnection())
+        //        {
+        //            string sql = "SELECT Id FROM [Customers] WHERE Email = @email";
+        //            SqlCommand cmd = new SqlCommand(sql, conn);
+        //            cmd.Parameters.AddWithValue("email", email);
+        //            conn.Open();
+
+        //            using (SqlDataReader reader = cmd.ExecuteReader())
+        //            {
+        //                if (reader.Read())
+        //                {
+        //                    userId = reader.GetInt32(0);
+        //                }
+        //            }
+        //            conn.Close();
+        //        }
+        //        return userId;
+        //    }
+        //}
     }
 }

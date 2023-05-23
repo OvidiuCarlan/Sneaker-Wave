@@ -9,16 +9,16 @@ using System.Text;
 using System.Threading.Tasks;
 using UnitTesting.MockDb;
 
-namespace UnitTesting
+namespace UnitTesting.TestClasses
 {
     [TestClass]
     public class ProductManagerTesting
     {
         //ProductManager productManager = new ProductManager(new MockProductDataHandler());
 
-       
+
         [TestMethod]
-        public void GetProductById_Test()
+        public void GetProductById_AddOneProduct_CompareProductNamesAndBrand()
         {
             //Arrange
             ProductManager productManager = new ProductManager(new MockProductDataHandler());
@@ -44,10 +44,20 @@ namespace UnitTesting
             Assert.AreEqual(expectedProducts.Count, actualProducts.Count);
 
         }
-        //[TestMethod]
-        //public void GetSizesByIdTest()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        [TestMethod]
+        public void GetSizesById_TwoSizesAreAdded_CompareNumberOfSizes()
+        {
+            //Arrange
+            ProductManager productManager = new ProductManager(new MockProductDataHandler());
+            List<string> expectedSizes = new List<string>
+            {
+                "44",
+                "45"
+            };
+            //Act
+            List<string> actualSizes = productManager.GetSizesById(1);
+            //Assert
+            CollectionAssert.AreEqual(expectedSizes, actualSizes);
+        }
     }
 }

@@ -29,5 +29,18 @@ namespace Logic.Models
         {
             this.phone = "";
         }
+        public CustomerDTO CustomerToCustomerDTO()
+        {
+            return new CustomerDTO()
+            {
+                Id = base.Id,
+                firstName = base.FirstName,
+                lastName = base.LastName,
+                email = base.Email,
+                salt = base.Salt,
+                password = base.Password,
+                phone = phone
+            };
+        }
     }
 }

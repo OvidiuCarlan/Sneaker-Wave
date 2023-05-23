@@ -29,8 +29,8 @@ namespace Logic.Logic
                 (string passwordSalt, string hashedPassword) = Security.CreateSaltAndHash(customerDTO.password);
                 customerDTO.salt = passwordSalt;
                 customerDTO.password = hashedPassword;
-
-                _userDataHandler.Add(customerDTO);
+                
+                _userDataHandler.Add(customerDTO);              
             }
             else
             {
