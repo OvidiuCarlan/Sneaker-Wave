@@ -19,6 +19,9 @@ builder.Services.AddScoped<IProductDataHandler, ProductDataHandler>();
 builder.Services.AddScoped<IProductManager, ProductManager>();
 builder.Services.AddScoped<IUserDataHandler, UserDataHandler>();
 builder.Services.AddScoped<IUserManager, UserManager>();
+builder.Services.AddScoped<IOrderManager, OrderManager>();
+builder.Services.AddScoped<IOrderDataHandler, OrderDataHandler>();
+builder.Services.AddScoped<IAddressDataHandler, AddressDataHandler>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {

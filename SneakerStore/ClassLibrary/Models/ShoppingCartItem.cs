@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logic.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,12 @@ namespace Logic.Models
             this.product = product;
             this.size = productSize;
             this.quantity = productQuantity;
+        }
+        public ShoppingCartItem(ShoppingCartItemDTO dto)
+        {
+            this.product = new Product(dto.Product);
+            this.size = dto.Size;
+            this.quantity = dto.Quantity;
         }
     }
     

@@ -11,24 +11,24 @@
     <form method="post" class="payment-form">
         <img src="/Images/card_img.png">
         <div class="field">
-            <label asp-for="card.Name"></label>
-            <span asp-validation-for="card.Name"></span>
-            <input type="text" placeholder="Name on card" asp-for="card.Name" required>
+            <label asp-for="cardDTO.Name"></label>
+            <span asp-validation-for="cardDTO.Name"></span>
+            <input type="text" placeholder="Name on card" asp-for="cardDTO.Name" required>
         </div>
         <div class="field">
-            <label asp-for="card.Number"></label>
-            <span asp-validation-for="card.Number"></span>
-            <input type="text" placeholder="Name on card" asp-for="card.Number" required>
+            <label asp-for="cardDTO.Number"></label>
+            <span asp-validation-for="cardDTO.Number"></span>
+            <input type="text" placeholder="Card number" asp-for="cardDTO.Number" required>
         </div>
         <div class="field">
-            <label asp-for="card.SecurityNumber"></label>
-            <span asp-validation-for="card.SecurityNumber"></span>
-            <input type="text" placeholder="Name on card" asp-for="card.SecurityNumber" required>
+            <label asp-for="cardDTO.SecurityNumber"></label>
+            <span asp-validation-for="cardDTO.SecurityNumber"></span>
+            <input type="text" placeholder="Security Number" asp-for="cardDTO.SecurityNumber" required>
         </div>
         <div class="field">
-            <label asp-for="card.ExpirationDate"></label>
-            <span asp-validation-for="card.ExpirationDate"></span>
-            <input type="month" placeholder="Name on card" asp-for="card.ExpirationDate" required>
+            <label asp-for="cardDTO.ExpirationDate"></label>
+            <span asp-validation-for="cardDTO.ExpirationDate"></span>
+            <input type="month" placeholder="Expiration Date" asp-for="cardDTO.ExpirationDate" required>
         </div>
         <div class="field">
             <button type="submit">Finish order</button>

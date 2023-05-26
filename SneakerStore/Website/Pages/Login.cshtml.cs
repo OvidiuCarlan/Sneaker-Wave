@@ -46,6 +46,7 @@ namespace Website.Pages
                         new Claim("firstName", customer.FirstName),
                         new Claim("lastName", customer.LastName),
                         new Claim("email", customer.Email),
+                        new Claim("phone", customer.Phone),
                             }, CookieAuthenticationDefaults.AuthenticationScheme);
                         ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                         await HttpContext.SignInAsync(claimsPrincipal);

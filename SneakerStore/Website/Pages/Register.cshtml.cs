@@ -15,8 +15,8 @@ namespace Website.Pages
         [BindProperty]
         public CustomerDTO customer { get; set; }
         public string errorMessage;
-        private readonly ILogger<IndexModel> _logger;
 
+        private readonly ILogger<IndexModel> _logger;
         private readonly IUserManager userManager;
         public RegisterModel(ILogger<IndexModel> logger, IUserManager _userManager)
         {

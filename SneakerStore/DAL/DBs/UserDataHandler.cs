@@ -18,7 +18,7 @@ namespace DAL.DBs
 
             using (SqlConnection conn = DBConnection.CreateConnection())
             {
-                string insertCustomerQuery = "INSERT INTO [Customers] (First_Name, Last_Name, Email, Phone) VALUES (@firstName, @lastName, @email, @phone);" +
+                string insertCustomerQuery = "INSERT INTO [Customers] (First_Name, Last_Name, Email, Phone, HasAccount) VALUES (@firstName, @lastName, @email, @phone, 1);" +
                                              "SELECT SCOPE_IDENTITY()";
                 SqlCommand cmd = new SqlCommand(insertCustomerQuery, conn);
 
@@ -29,7 +29,6 @@ namespace DAL.DBs
 
                 conn.Open();
                 int customerId = Convert.ToInt32(cmd.ExecuteScalar());
-                //conn.Close();
 
                 string insertUserQuery = "INSERT INTO [Users] (Customer_Id, Salt, Password) VALUES (@customerId, @salt, @password)";
                 SqlCommand cmd2 = new SqlCommand(insertUserQuery, conn);
@@ -119,7 +118,7 @@ namespace DAL.DBs
 
             using (SqlConnection conn = DBConnection.CreateConnection())
             {
-                string sql = "SELECT COUNT(*) FROM [Customers] WHERE Email = @email";
+                string sql = "SELECT COUNT(*) FROM [Customers] WHERE Email = @email AND HasAccount = 1";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("email", email);
                 conn.Open();
@@ -146,17 +145,30 @@ namespace DAL.DBs
 
             using (SqlConnection conn = DBConnection.CreateConnection())
             {
-                string sql = "SELECT Password, Salt FROM [Users] WHERE Email = @email";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("email", email);
+                string getAccountId = "SELECT Id FROM [Customers] WHERE Email = @email AND HasAccount = 1";
+                SqlCommand cmd = new SqlCommand(getAccountId, conn);
+                cmd.Parameters.AddWithValue("@email", email);
+                int accountId = 0;
                 conn.Open();
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     if (reader.Read())
                     {
-                        password = reader.GetString(0);
-                        salt = reader.GetString(1);
+                        accountId = reader.GetInt32(0);
+                    }
+                }
+
+                string getPasswordAndHash = "SELECT Salt, Password FROM [Users] WHERE Customer_Id = @id";
+                SqlCommand cmd2 = new SqlCommand(getPasswordAndHash, conn);
+                cmd2.Parameters.AddWithValue("@id", accountId);
+
+                using (SqlDataReader reader = cmd2.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        salt = reader.GetString(0);
+                        password = reader.GetString(1);
                     }
                 }
                 conn.Close();
@@ -175,7 +187,7 @@ namespace DAL.DBs
 
             using (SqlConnection conn = DBConnection.CreateConnection())
             {
-                string sql = "SELECT * FROM [Customers] WHERE Email = @email";
+                string sql = "SELECT * FROM [Customers] WHERE Email = @email AND HasAccount = 1";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("email", email);
                 conn.Open();
@@ -204,30 +216,6 @@ namespace DAL.DBs
         public bool Remove()
         {
             throw new NotImplementedException();
-        }
-
-        //    public int GetUserId(string email)
-        //    {
-        //        int userId = 0;
-
-        //        using (SqlConnection conn = DBConnection.CreateConnection())
-        //        {
-        //            string sql = "SELECT Id FROM [Customers] WHERE Email = @email";
-        //            SqlCommand cmd = new SqlCommand(sql, conn);
-        //            cmd.Parameters.AddWithValue("email", email);
-        //            conn.Open();
-
-        //            using (SqlDataReader reader = cmd.ExecuteReader())
-        //            {
-        //                if (reader.Read())
-        //                {
-        //                    userId = reader.GetInt32(0);
-        //                }
-        //            }
-        //            conn.Close();
-        //        }
-        //        return userId;
-        //    }
-        //}
+        }        
     }
 }

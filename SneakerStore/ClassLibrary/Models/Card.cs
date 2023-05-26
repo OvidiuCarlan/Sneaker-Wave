@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logic.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,14 @@ namespace Logic.Models
             number = string.Empty;
             securityNumber = string.Empty;
             expirationDate = DateOnly.MinValue;
+        }
+        public Card(CardDTO dto)
+        {
+            id = dto.Id;
+            name = dto.Name;
+            number = dto.Number;
+            securityNumber = dto.SecurityNumber;
+            expirationDate = dto.ExpirationDate;    
         }
     }
 }

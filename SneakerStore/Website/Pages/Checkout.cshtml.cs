@@ -1,16 +1,18 @@
 using Logic.DTOs;
 using Logic.Interfaces;
 using Logic.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 
 namespace Website.Pages
 {
+    [Authorize]
     public class CheckoutModel : PageModel
     {
         [BindProperty]
-        public AddressDTO address { get; private set; } 
+        public AddressDTO address { get; set; } 
 
         private readonly ILogger<IndexModel> _logger;
         public CheckoutModel(ILogger<IndexModel> logger)
@@ -21,13 +23,14 @@ namespace Website.Pages
         public void OnGet()
         {
         }
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
                 StoreAddress(address);
+                return RedirectToPage("Payment");
             }
-            return RedirectToPage("Payment");
+            return Page();
         }
         public void StoreAddress(AddressDTO address)
         {

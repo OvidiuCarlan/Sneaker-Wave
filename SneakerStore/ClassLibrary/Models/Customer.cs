@@ -11,7 +11,7 @@ namespace Logic.Models
     public class Customer : User
     {
         private string phone;
-        private string Phone { get { return phone; } }
+        public string Phone { get { return phone; } }
 
         public Customer(string firstName, string lastName, string email, string phone, string salt, string password) : base(firstName, lastName, email, salt, password)
         {

@@ -18,10 +18,21 @@ namespace Logic.Models
 
         public int Id { get { return id; } }
         public Customer Customer { get {  return customer; } }
-        private DateTime Date { get { return date; } }
+        public DateTime Date { get { return date; } }
         public Address Address { get { return address; } }
         public List<ShoppingCartItem> Products { get {  return products; } }
         public Card Card { get { return card; } }
         public double Price { get { return price; } }
+
+        public Order(Customer customer, DateTime date, Address address, List<ShoppingCartItem> products, Card card, double price)
+        {
+            this.id = 0;
+            this.customer = customer;
+            this.date = date;
+            this.address = address;
+            this.products = products;
+            this.card = card;
+            this.price = price;
+        }
     }
 }

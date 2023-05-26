@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logic.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,20 +29,29 @@ namespace Logic.Models
             houseNumber = "";
             zipCode = "";
         }
-        public Address(string city, string street, string houseNumber, string zipCode, string phoneNumber)
+        public Address(string city, string street, string houseNumber, string zipCode)
         {
+            this.id = 0;
             this.city = city;
             this.street = street;
             this.houseNumber = houseNumber;
             this.zipCode = zipCode;
         }
-        public Address(int id, string city, string street, string houseNumber, string zipCode, string phoneNumber)
+        public Address(int id, string city, string street, string houseNumber, string zipCode)
         {
             this.id = id;
             this.city = city;
             this.street = street;
             this.houseNumber = houseNumber;
             this.zipCode = zipCode;
+        }
+        public Address(AddressDTO dto)
+        {
+            this.id = 0;
+            this.city = dto.City;
+            this.street = dto.Street;
+            this.houseNumber = dto.StreetNumber;
+            this.zipCode = dto.Zipcode;
         }
     }
 }
