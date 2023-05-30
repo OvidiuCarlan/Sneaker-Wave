@@ -8,9 +8,9 @@ namespace Logic.Interfaces
 {
     public interface IBonusCardDataHandler
     {
-        public void CreateCard(int userId, int points);
-        public bool CheckIfUserHasCard(int userId);
+        public bool CreateCard(int userId, int points);
+        public bool HasBonusCard(int userId);
         public void AddPointsToCard(int userId, int points);
-        public int GetCardPoints(int userId, int points);
+        public int GetCardPoints(int userId);
     }
 }

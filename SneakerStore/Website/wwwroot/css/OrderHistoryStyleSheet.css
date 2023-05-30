@@ -86,3 +86,16 @@
     color: green;
     opacity: 100%;
 }
+tr:nth-child(even) {
+    background-color: #ffffff;
+}
+.orders_table {
+    border: none;
+    border-collapse: collapse;
+}
+.table_head {
+    background-color: #ffffff;
+}
+.table_head th{
+    padding: 15px 25px 15px 25px;
+}

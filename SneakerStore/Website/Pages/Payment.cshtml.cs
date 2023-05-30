@@ -23,9 +23,11 @@ namespace Website.Pages
 
         private readonly ILogger<PaymentModel> _logger;
         private readonly IOrderManager orderManager;
-        public PaymentModel(ILogger<PaymentModel> logger, IOrderManager _orderManager)
+        private readonly IBonusCardManager bonusCardManager;
+        public PaymentModel(ILogger<PaymentModel> logger, IOrderManager _orderManager, IBonusCardManager _bonusCardManager)
         {
             orderManager = _orderManager;
+            bonusCardManager = _bonusCardManager;
             _logger = logger;
         }
         public void OnGet()
@@ -47,13 +49,13 @@ namespace Website.Pages
                 try
                 {
                     orderManager.AddAccountOrder(order);
+                    bonusCardManager.SaveBonusPoints(totalPrice, customer.Id);
                 }
                 catch (Exception ex)
                 {
                     errorMessage = ex.Message;
                     return Page();
-                }
-                
+                }                
             }
             return RedirectToPage("OrderCompleted");
         }

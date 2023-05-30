@@ -27,6 +27,8 @@ internal class Program
         builder.Services.AddScoped<IOrderDataHandler, OrderDataHandler>();
         builder.Services.AddScoped<IAddressDataHandler, AddressDataHandler>();
         builder.Services.AddScoped<ICardDataHandler, CardDataHandler>();
+        builder.Services.AddScoped<IBonusCardDataHandler, BonusCardDataHandler>();
+        builder.Services.AddScoped<IBonusCardManager, BonusCardManager>();
         builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {

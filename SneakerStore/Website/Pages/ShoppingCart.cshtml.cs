@@ -1,4 +1,5 @@
 using Logic.DTOs;
+using Logic.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,10 +12,19 @@ namespace Website.Pages
     {
         public List<ShoppingCartItemDTO> cartItems { get; set; }
         public double Total { get; set; }
+        public int BonusCardPoints { get; set; }
+        private readonly ILogger<ShoppingCartModel> _logger;
+        private readonly IBonusCardManager bonusCardManager;
+        public ShoppingCartModel(ILogger<ShoppingCartModel> logger, IBonusCardManager _bonusCardManager)
+        {
+            bonusCardManager = _bonusCardManager;
+            _logger = logger;
+        }
         public void OnGet()
         {
             cartItems = GetCartItems();
             Total = CalculateTotalPrice();
+            BonusCardPoints = bonusCardManager.GetBonusPoints(GetUserId());
         }
         public async Task<IActionResult> OnPostAsync()
         {
@@ -69,6 +79,10 @@ namespace Website.Pages
         {
             string json = JsonSerializer.Serialize(price);
             HttpContext.Session.SetString("Price", json);
+        }
+        public int GetUserId()
+        {
+            return Convert.ToInt32(User?.FindFirst("id")?.Value ?? string.Empty);
         }
     }
 }
