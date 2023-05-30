@@ -10,11 +10,12 @@ namespace Logic.DTOs
     public class OrderDTO
     {
         public int Id { get; set; }
-        public Customer Customer { get; set; }
+        public CustomerDTO Customer { get; set; }
         public DateTime DateTime { get; set; }
-        public Address Address { get; set; }
-        public List<ShoppingCartItem> ShoppingCartItems { get; set; }
-        public Card Card { get; set; }
+        public AddressDTO Address { get; set; }
+        public List<ShoppingCartItemDTO> ShoppingCartItems { get; set; }
+        public CardDTO Card { get; set; }
         public double Price { get; set; }
+        public string Status { get; set; }
     }
 }

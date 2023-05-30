@@ -7,28 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Pages\OrderSuccessful.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary\Logic.csproj" />
     <ProjectReference Include="..\DAL\DAL.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\OrderSuccessful.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\OrderSuccessful.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Pages\OrderSuccessful.cshtml" />
   </ItemGroup>
 
 </Project>

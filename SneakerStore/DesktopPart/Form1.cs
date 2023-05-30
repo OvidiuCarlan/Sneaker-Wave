@@ -11,11 +11,11 @@ namespace DesktopPart
         List<Product> products;
         public Form1()
         {
-            InitializeComponent();     
+            InitializeComponent();
             productManager = new ProductManager(new ProductDataHandler());
             products = productManager.GetAll();
-        }     
-        
+        }
+
         private void Form1_Load_1(object sender, EventArgs e)
         {
             dgvProducts.ReadOnly = true;
@@ -49,7 +49,7 @@ namespace DesktopPart
             tbImage.Clear();
         }
         public void RefreshProductsDgv()
-        {            
+        {
             dgvProducts.DataSource = products;
             dgvProducts.Update();
             dgvProducts.Refresh();
@@ -59,7 +59,7 @@ namespace DesktopPart
         {
             int index = dgvProducts.CurrentRow.Index;
             DataGridViewRow selectedRow = dgvProducts.Rows[index];
-                        
+
             EditProduct editProduct = new EditProduct(products[index], this);
             editProduct.ShowDialog();
         }

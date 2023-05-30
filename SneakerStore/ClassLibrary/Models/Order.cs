@@ -15,6 +15,7 @@ namespace Logic.Models
         private List<ShoppingCartItem> products;
         private Card card;
         private double price;
+        private string status;
 
         public int Id { get { return id; } }
         public Customer Customer { get {  return customer; } }
@@ -23,8 +24,9 @@ namespace Logic.Models
         public List<ShoppingCartItem> Products { get {  return products; } }
         public Card Card { get { return card; } }
         public double Price { get { return price; } }
+        public string Status { get { return status; } }
 
-        public Order(Customer customer, DateTime date, Address address, List<ShoppingCartItem> products, Card card, double price)
+        public Order(Customer customer, DateTime date, Address address, List<ShoppingCartItem> products, Card card, double price, string status)
         {
             this.id = 0;
             this.customer = customer;
@@ -33,6 +35,7 @@ namespace Logic.Models
             this.products = products;
             this.card = card;
             this.price = price;
+            this.status = status;
         }
     }
 }

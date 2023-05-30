@@ -1,4 +1,5 @@
-﻿using Logic.Interfaces;
+﻿using Logic.DTOs;
+using Logic.Interfaces;
 using Logic.Models;
 using System;
 using System.Collections.Generic;
@@ -13,32 +14,46 @@ namespace DAL.DBs
 {
     public class OrderDataHandler : IOrderDataHandler
     {
-        public int SaveCard(Card card)
+        public List<OrderDTO> GetAllOrdersForUser(int userId)
         {
+            List<OrderDTO> orders = new List<OrderDTO>();
             using (SqlConnection conn = DBConnection.CreateConnection())
             {
-                string sql = "INSERT INTO [Cards](Name, Number, SecurityNumber, ExpirationDate) VALUES (@name, @number, @securityNumber, @expirationDate);" +
-                             "SELECT SCOPE_IDENTITY()";
+                string sql = "SELECT * FROM [Orders] WHERE Customer_Id = @id ORDER BY Id";
                 SqlCommand cmd = new SqlCommand(sql, conn);
-
-                cmd.Parameters.AddWithValue("@name", card.Name);
-                cmd.Parameters.AddWithValue("@number", card.Number);
-                cmd.Parameters.AddWithValue("@securityNumber", card.SecurityNumber);
-                cmd.Parameters.AddWithValue("@expirationDate", card.ExpirationDate.ToString());
-
+                cmd.Parameters.AddWithValue("id", userId);
                 conn.Open();
-                int cardId = 0;
-                cardId = Convert.ToInt32(cmd.ExecuteScalar());
 
-                return cardId;
+                OrderDTO order = null;
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    order = new OrderDTO();
+                    CustomerDTO customer = new CustomerDTO();
+                    CardDTO card = new CardDTO();
+
+                    order.Id = reader.GetInt32("Id");
+                    customer.Id = reader.GetInt32("Customer_Id");
+                    card.Id = reader.GetInt32("Card_Id");
+                    order.DateTime = reader.GetDateTime("DateTime");
+                    order.Price = reader.GetDouble("Price");
+                    order.Status = reader.GetString("Status");
+
+                    order.Customer = customer;
+                    order.Card = card;
+                    orders.Add(order);
+                }
+                conn.Close();
+                return orders;
             }
         }
 
-        public int SaveOrder(int customerId, int addressId, int cardId, DateTime dateTime, double price)
+        public int SaveOrder(int customerId, int addressId, int cardId, DateTime dateTime, double price, string status)
         {
             using (SqlConnection conn = DBConnection.CreateConnection())
             {
-                string sql = "INSERT INTO [Orders](Customer_Id, Address_Id, Card_Id, DateTime, Price) VALUES (@customerId, @addressId, @cardId, @dateTime, @price);" +
+                string sql = "INSERT INTO [Orders](Customer_Id, Address_Id, Card_Id, DateTime, Price, Status) VALUES (@customerId, @addressId, @cardId, @dateTime, @price, @status);" +
                              "SELECT SCOPE_IDENTITY()";
                 SqlCommand cmd = new SqlCommand (sql, conn);
 
@@ -47,6 +62,7 @@ namespace DAL.DBs
                 cmd.Parameters.AddWithValue("@cardId", cardId);
                 cmd.Parameters.AddWithValue("@dateTime", dateTime);
                 cmd.Parameters.AddWithValue("@price", price);
+                cmd.Parameters.AddWithValue ("status", status);
 
                 conn.Open();
                 int orderId = 0;
@@ -72,7 +88,7 @@ namespace DAL.DBs
 
                     foreach (ShoppingCartItem item in items)
                     {
-                        dataTable.Rows.Add(orderId, item.Product.Id, item.Size, item.Size);
+                        dataTable.Rows.Add(orderId, item.Product.Id, item.Size, item.Quantity);
                     }
 
                     using (SqlBulkCopy bulkCopy = new SqlBulkCopy(conn))
@@ -94,5 +110,6 @@ namespace DAL.DBs
                 return false;
             }                     
         }
+        
     }
 }

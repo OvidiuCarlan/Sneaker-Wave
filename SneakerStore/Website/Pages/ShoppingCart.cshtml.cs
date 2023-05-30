@@ -1,10 +1,12 @@
 using Logic.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 
 namespace Website.Pages
 {
+    //[Authorize(Policy = "CustomPolicy")]
     public class ShoppingCartModel : PageModel
     {
         public List<ShoppingCartItemDTO> cartItems { get; set; }

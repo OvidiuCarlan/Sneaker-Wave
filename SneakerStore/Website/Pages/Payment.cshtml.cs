@@ -19,6 +19,7 @@ namespace Website.Pages
         double totalPrice { get; set; }
         Order order { get; set; }
         private Card card { get; set; }
+        string errorMessage { get; set; }
 
         private readonly ILogger<PaymentModel> _logger;
         private readonly IOrderManager orderManager;
@@ -40,11 +41,21 @@ namespace Website.Pages
                 items = GetCartItems();
                 totalPrice = GetTotalPrice();
                 card = new Card(cardDTO);
+                string status = "Open";
 
-                order = new Order(customer, dateTime, address, items, card, totalPrice);
-                orderManager.AddAccountOrder(order);
+                order = new Order(customer, dateTime, address, items, card, totalPrice, status);
+                try
+                {
+                    orderManager.AddAccountOrder(order);
+                }
+                catch (Exception ex)
+                {
+                    errorMessage = ex.Message;
+                    return Page();
+                }
+                
             }
-            return RedirectToPage("OrderSuccessful");
+            return RedirectToPage("OrderCompleted");
         }
 
 

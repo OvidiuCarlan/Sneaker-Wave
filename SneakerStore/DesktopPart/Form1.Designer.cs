@@ -29,303 +29,302 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.tcMainMenu = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tcProducts = new System.Windows.Forms.TabControl();
-            this.Add = new System.Windows.Forms.TabPage();
-            this.lblProductDetails = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnAddProduct = new System.Windows.Forms.Button();
-            this.lblQuantity = new System.Windows.Forms.Label();
-            this.lblCategory = new System.Windows.Forms.Label();
-            this.lblSize = new System.Windows.Forms.Label();
-            this.lblPrice = new System.Windows.Forms.Label();
-            this.lblName = new System.Windows.Forms.Label();
-            this.lblBrand = new System.Windows.Forms.Label();
-            this.tbQuantity = new System.Windows.Forms.TextBox();
-            this.tbBrand = new System.Windows.Forms.TextBox();
-            this.tbName = new System.Windows.Forms.TextBox();
-            this.tbCategory = new System.Windows.Forms.TextBox();
-            this.tbPrice = new System.Windows.Forms.TextBox();
-            this.tbSize = new System.Windows.Forms.TextBox();
-            this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.Products = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.lblImage = new System.Windows.Forms.Label();
-            this.tbImage = new System.Windows.Forms.TextBox();
-            this.tcMainMenu.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tcProducts.SuspendLayout();
-            this.Add.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
-            this.SuspendLayout();
+            tcMainMenu = new TabControl();
+            tabPage1 = new TabPage();
+            tcProducts = new TabControl();
+            Add = new TabPage();
+            lblProductDetails = new Label();
+            panel1 = new Panel();
+            lblImage = new Label();
+            tbImage = new TextBox();
+            pictureBox1 = new PictureBox();
+            btnAddProduct = new Button();
+            lblQuantity = new Label();
+            lblCategory = new Label();
+            lblSize = new Label();
+            lblPrice = new Label();
+            lblName = new Label();
+            lblBrand = new Label();
+            tbQuantity = new TextBox();
+            tbBrand = new TextBox();
+            tbName = new TextBox();
+            tbCategory = new TextBox();
+            tbPrice = new TextBox();
+            tbSize = new TextBox();
+            dgvProducts = new DataGridView();
+            Products = new TabPage();
+            Orders = new TabPage();
+            tcMainMenu.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tcProducts.SuspendLayout();
+            Add.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
+            SuspendLayout();
             // 
             // tcMainMenu
             // 
-            this.tcMainMenu.Controls.Add(this.tabPage1);
-            this.tcMainMenu.Controls.Add(this.tabPage2);
-            this.tcMainMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tcMainMenu.Location = new System.Drawing.Point(0, 0);
-            this.tcMainMenu.Name = "tcMainMenu";
-            this.tcMainMenu.SelectedIndex = 0;
-            this.tcMainMenu.Size = new System.Drawing.Size(982, 565);
-            this.tcMainMenu.TabIndex = 0;
+            tcMainMenu.Controls.Add(tabPage1);
+            tcMainMenu.Controls.Add(Orders);
+            tcMainMenu.Dock = DockStyle.Fill;
+            tcMainMenu.Location = new Point(0, 0);
+            tcMainMenu.Name = "tcMainMenu";
+            tcMainMenu.SelectedIndex = 0;
+            tcMainMenu.Size = new Size(982, 565);
+            tcMainMenu.TabIndex = 0;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.tcProducts);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(974, 537);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Products";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            tabPage1.Controls.Add(tcProducts);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(974, 537);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Products";
+            tabPage1.UseVisualStyleBackColor = true;
             // 
             // tcProducts
             // 
-            this.tcProducts.Controls.Add(this.Add);
-            this.tcProducts.Controls.Add(this.Products);
-            this.tcProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tcProducts.Location = new System.Drawing.Point(3, 3);
-            this.tcProducts.Multiline = true;
-            this.tcProducts.Name = "tcProducts";
-            this.tcProducts.SelectedIndex = 0;
-            this.tcProducts.Size = new System.Drawing.Size(968, 531);
-            this.tcProducts.TabIndex = 0;
+            tcProducts.Controls.Add(Add);
+            tcProducts.Controls.Add(Products);
+            tcProducts.Dock = DockStyle.Fill;
+            tcProducts.Location = new Point(3, 3);
+            tcProducts.Multiline = true;
+            tcProducts.Name = "tcProducts";
+            tcProducts.SelectedIndex = 0;
+            tcProducts.Size = new Size(968, 531);
+            tcProducts.TabIndex = 0;
             // 
             // Add
             // 
-            this.Add.Controls.Add(this.lblProductDetails);
-            this.Add.Controls.Add(this.panel1);
-            this.Add.Controls.Add(this.dgvProducts);
-            this.Add.Location = new System.Drawing.Point(4, 24);
-            this.Add.Name = "Add";
-            this.Add.Padding = new System.Windows.Forms.Padding(3);
-            this.Add.Size = new System.Drawing.Size(960, 503);
-            this.Add.TabIndex = 0;
-            this.Add.Text = "Add";
-            this.Add.UseVisualStyleBackColor = true;
+            Add.Controls.Add(lblProductDetails);
+            Add.Controls.Add(panel1);
+            Add.Controls.Add(dgvProducts);
+            Add.Location = new Point(4, 24);
+            Add.Name = "Add";
+            Add.Padding = new Padding(3);
+            Add.Size = new Size(960, 503);
+            Add.TabIndex = 0;
+            Add.Text = "Add";
+            Add.UseVisualStyleBackColor = true;
             // 
             // lblProductDetails
             // 
-            this.lblProductDetails.AutoSize = true;
-            this.lblProductDetails.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblProductDetails.Location = new System.Drawing.Point(710, 7);
-            this.lblProductDetails.Name = "lblProductDetails";
-            this.lblProductDetails.Size = new System.Drawing.Size(192, 20);
-            this.lblProductDetails.TabIndex = 6;
-            this.lblProductDetails.Text = "Enter product details below";
+            lblProductDetails.AutoSize = true;
+            lblProductDetails.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            lblProductDetails.Location = new Point(710, 7);
+            lblProductDetails.Name = "lblProductDetails";
+            lblProductDetails.Size = new Size(192, 20);
+            lblProductDetails.TabIndex = 6;
+            lblProductDetails.Text = "Enter product details below";
             // 
             // panel1
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.lblImage);
-            this.panel1.Controls.Add(this.tbImage);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.btnAddProduct);
-            this.panel1.Controls.Add(this.lblQuantity);
-            this.panel1.Controls.Add(this.lblCategory);
-            this.panel1.Controls.Add(this.lblSize);
-            this.panel1.Controls.Add(this.lblPrice);
-            this.panel1.Controls.Add(this.lblName);
-            this.panel1.Controls.Add(this.lblBrand);
-            this.panel1.Controls.Add(this.tbQuantity);
-            this.panel1.Controls.Add(this.tbBrand);
-            this.panel1.Controls.Add(this.tbName);
-            this.panel1.Controls.Add(this.tbCategory);
-            this.panel1.Controls.Add(this.tbPrice);
-            this.panel1.Controls.Add(this.tbSize);
-            this.panel1.Location = new System.Drawing.Point(675, 16);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(261, 470);
-            this.panel1.TabIndex = 7;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(42, 13);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(177, 97);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 13;
-            this.pictureBox1.TabStop = false;
-            // 
-            // btnAddProduct
-            // 
-            this.btnAddProduct.Location = new System.Drawing.Point(59, 432);
-            this.btnAddProduct.Name = "btnAddProduct";
-            this.btnAddProduct.Size = new System.Drawing.Size(144, 29);
-            this.btnAddProduct.TabIndex = 12;
-            this.btnAddProduct.Text = "Add Product";
-            this.btnAddProduct.UseVisualStyleBackColor = true;
-            this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
-            // 
-            // lblQuantity
-            // 
-            this.lblQuantity.AutoSize = true;
-            this.lblQuantity.Location = new System.Drawing.Point(34, 338);
-            this.lblQuantity.Name = "lblQuantity";
-            this.lblQuantity.Size = new System.Drawing.Size(53, 15);
-            this.lblQuantity.TabIndex = 11;
-            this.lblQuantity.Text = "Quantity";
-            // 
-            // lblCategory
-            // 
-            this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(34, 293);
-            this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(55, 15);
-            this.lblCategory.TabIndex = 10;
-            this.lblCategory.Text = "Category";
-            // 
-            // lblSize
-            // 
-            this.lblSize.AutoSize = true;
-            this.lblSize.Location = new System.Drawing.Point(34, 248);
-            this.lblSize.Name = "lblSize";
-            this.lblSize.Size = new System.Drawing.Size(27, 15);
-            this.lblSize.TabIndex = 9;
-            this.lblSize.Text = "Size";
-            // 
-            // lblPrice
-            // 
-            this.lblPrice.AutoSize = true;
-            this.lblPrice.Location = new System.Drawing.Point(34, 203);
-            this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(33, 15);
-            this.lblPrice.TabIndex = 8;
-            this.lblPrice.Text = "Price";
-            // 
-            // lblName
-            // 
-            this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(34, 158);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(39, 15);
-            this.lblName.TabIndex = 7;
-            this.lblName.Text = "Name";
-            // 
-            // lblBrand
-            // 
-            this.lblBrand.AutoSize = true;
-            this.lblBrand.Location = new System.Drawing.Point(34, 113);
-            this.lblBrand.Name = "lblBrand";
-            this.lblBrand.Size = new System.Drawing.Size(38, 15);
-            this.lblBrand.TabIndex = 6;
-            this.lblBrand.Text = "Brand";
-            // 
-            // tbQuantity
-            // 
-            this.tbQuantity.Location = new System.Drawing.Point(34, 356);
-            this.tbQuantity.Name = "tbQuantity";
-            this.tbQuantity.Size = new System.Drawing.Size(192, 23);
-            this.tbQuantity.TabIndex = 5;
-            // 
-            // tbBrand
-            // 
-            this.tbBrand.Location = new System.Drawing.Point(34, 131);
-            this.tbBrand.Name = "tbBrand";
-            this.tbBrand.Size = new System.Drawing.Size(192, 23);
-            this.tbBrand.TabIndex = 0;
-            // 
-            // tbName
-            // 
-            this.tbName.Location = new System.Drawing.Point(34, 176);
-            this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(192, 23);
-            this.tbName.TabIndex = 1;
-            // 
-            // tbCategory
-            // 
-            this.tbCategory.Location = new System.Drawing.Point(34, 311);
-            this.tbCategory.Name = "tbCategory";
-            this.tbCategory.Size = new System.Drawing.Size(192, 23);
-            this.tbCategory.TabIndex = 4;
-            // 
-            // tbPrice
-            // 
-            this.tbPrice.Location = new System.Drawing.Point(34, 221);
-            this.tbPrice.Name = "tbPrice";
-            this.tbPrice.Size = new System.Drawing.Size(192, 23);
-            this.tbPrice.TabIndex = 2;
-            // 
-            // tbSize
-            // 
-            this.tbSize.Location = new System.Drawing.Point(34, 266);
-            this.tbSize.Name = "tbSize";
-            this.tbSize.Size = new System.Drawing.Size(192, 23);
-            this.tbSize.TabIndex = 3;
-            // 
-            // dgvProducts
-            // 
-            this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProducts.Location = new System.Drawing.Point(15, 16);
-            this.dgvProducts.Name = "dgvProducts";
-            this.dgvProducts.RowTemplate.Height = 25;
-            this.dgvProducts.Size = new System.Drawing.Size(654, 470);
-            this.dgvProducts.TabIndex = 6;
-            this.dgvProducts.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellContentDoubleClick);
-            // 
-            // Products
-            // 
-            this.Products.Location = new System.Drawing.Point(4, 24);
-            this.Products.Name = "Products";
-            this.Products.Padding = new System.Windows.Forms.Padding(3);
-            this.Products.Size = new System.Drawing.Size(960, 503);
-            this.Products.TabIndex = 1;
-            this.Products.Text = "All Products";
-            this.Products.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(974, 537);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(lblImage);
+            panel1.Controls.Add(tbImage);
+            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(btnAddProduct);
+            panel1.Controls.Add(lblQuantity);
+            panel1.Controls.Add(lblCategory);
+            panel1.Controls.Add(lblSize);
+            panel1.Controls.Add(lblPrice);
+            panel1.Controls.Add(lblName);
+            panel1.Controls.Add(lblBrand);
+            panel1.Controls.Add(tbQuantity);
+            panel1.Controls.Add(tbBrand);
+            panel1.Controls.Add(tbName);
+            panel1.Controls.Add(tbCategory);
+            panel1.Controls.Add(tbPrice);
+            panel1.Controls.Add(tbSize);
+            panel1.Location = new Point(675, 16);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(261, 470);
+            panel1.TabIndex = 7;
             // 
             // lblImage
             // 
-            this.lblImage.AutoSize = true;
-            this.lblImage.Location = new System.Drawing.Point(34, 382);
-            this.lblImage.Name = "lblImage";
-            this.lblImage.Size = new System.Drawing.Size(65, 15);
-            this.lblImage.TabIndex = 15;
-            this.lblImage.Text = "Image Link";
+            lblImage.AutoSize = true;
+            lblImage.Location = new Point(34, 382);
+            lblImage.Name = "lblImage";
+            lblImage.Size = new Size(65, 15);
+            lblImage.TabIndex = 15;
+            lblImage.Text = "Image Link";
             // 
             // tbImage
             // 
-            this.tbImage.Location = new System.Drawing.Point(34, 400);
-            this.tbImage.Name = "tbImage";
-            this.tbImage.Size = new System.Drawing.Size(192, 23);
-            this.tbImage.TabIndex = 14;
+            tbImage.Location = new Point(34, 400);
+            tbImage.Name = "tbImage";
+            tbImage.Size = new Size(192, 23);
+            tbImage.TabIndex = 14;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(42, 13);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(177, 97);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 13;
+            pictureBox1.TabStop = false;
+            // 
+            // btnAddProduct
+            // 
+            btnAddProduct.Location = new Point(59, 432);
+            btnAddProduct.Name = "btnAddProduct";
+            btnAddProduct.Size = new Size(144, 29);
+            btnAddProduct.TabIndex = 12;
+            btnAddProduct.Text = "Add Product";
+            btnAddProduct.UseVisualStyleBackColor = true;
+            btnAddProduct.Click += btnAddProduct_Click;
+            // 
+            // lblQuantity
+            // 
+            lblQuantity.AutoSize = true;
+            lblQuantity.Location = new Point(34, 338);
+            lblQuantity.Name = "lblQuantity";
+            lblQuantity.Size = new Size(53, 15);
+            lblQuantity.TabIndex = 11;
+            lblQuantity.Text = "Quantity";
+            // 
+            // lblCategory
+            // 
+            lblCategory.AutoSize = true;
+            lblCategory.Location = new Point(34, 293);
+            lblCategory.Name = "lblCategory";
+            lblCategory.Size = new Size(55, 15);
+            lblCategory.TabIndex = 10;
+            lblCategory.Text = "Category";
+            // 
+            // lblSize
+            // 
+            lblSize.AutoSize = true;
+            lblSize.Location = new Point(34, 248);
+            lblSize.Name = "lblSize";
+            lblSize.Size = new Size(27, 15);
+            lblSize.TabIndex = 9;
+            lblSize.Text = "Size";
+            // 
+            // lblPrice
+            // 
+            lblPrice.AutoSize = true;
+            lblPrice.Location = new Point(34, 203);
+            lblPrice.Name = "lblPrice";
+            lblPrice.Size = new Size(33, 15);
+            lblPrice.TabIndex = 8;
+            lblPrice.Text = "Price";
+            // 
+            // lblName
+            // 
+            lblName.AutoSize = true;
+            lblName.Location = new Point(34, 158);
+            lblName.Name = "lblName";
+            lblName.Size = new Size(39, 15);
+            lblName.TabIndex = 7;
+            lblName.Text = "Name";
+            // 
+            // lblBrand
+            // 
+            lblBrand.AutoSize = true;
+            lblBrand.Location = new Point(34, 113);
+            lblBrand.Name = "lblBrand";
+            lblBrand.Size = new Size(38, 15);
+            lblBrand.TabIndex = 6;
+            lblBrand.Text = "Brand";
+            // 
+            // tbQuantity
+            // 
+            tbQuantity.Location = new Point(34, 356);
+            tbQuantity.Name = "tbQuantity";
+            tbQuantity.Size = new Size(192, 23);
+            tbQuantity.TabIndex = 5;
+            // 
+            // tbBrand
+            // 
+            tbBrand.Location = new Point(34, 131);
+            tbBrand.Name = "tbBrand";
+            tbBrand.Size = new Size(192, 23);
+            tbBrand.TabIndex = 0;
+            // 
+            // tbName
+            // 
+            tbName.Location = new Point(34, 176);
+            tbName.Name = "tbName";
+            tbName.Size = new Size(192, 23);
+            tbName.TabIndex = 1;
+            // 
+            // tbCategory
+            // 
+            tbCategory.Location = new Point(34, 311);
+            tbCategory.Name = "tbCategory";
+            tbCategory.Size = new Size(192, 23);
+            tbCategory.TabIndex = 4;
+            // 
+            // tbPrice
+            // 
+            tbPrice.Location = new Point(34, 221);
+            tbPrice.Name = "tbPrice";
+            tbPrice.Size = new Size(192, 23);
+            tbPrice.TabIndex = 2;
+            // 
+            // tbSize
+            // 
+            tbSize.Location = new Point(34, 266);
+            tbSize.Name = "tbSize";
+            tbSize.Size = new Size(192, 23);
+            tbSize.TabIndex = 3;
+            // 
+            // dgvProducts
+            // 
+            dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProducts.Location = new Point(15, 16);
+            dgvProducts.Name = "dgvProducts";
+            dgvProducts.RowTemplate.Height = 25;
+            dgvProducts.Size = new Size(654, 470);
+            dgvProducts.TabIndex = 6;
+            dgvProducts.CellContentDoubleClick += dgvProducts_CellContentDoubleClick;
+            // 
+            // Products
+            // 
+            Products.Location = new Point(4, 24);
+            Products.Name = "Products";
+            Products.Padding = new Padding(3);
+            Products.Size = new Size(960, 503);
+            Products.TabIndex = 1;
+            Products.Text = "All Products";
+            Products.UseVisualStyleBackColor = true;
+            // 
+            // Orders
+            // 
+            Orders.Location = new Point(4, 24);
+            Orders.Name = "Orders";
+            Orders.Padding = new Padding(3);
+            Orders.Size = new Size(974, 537);
+            Orders.TabIndex = 1;
+            Orders.Text = "Orders";
+            Orders.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 565);
-            this.Controls.Add(this.tcMainMenu);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load_1);
-            this.tcMainMenu.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tcProducts.ResumeLayout(false);
-            this.Add.ResumeLayout(false);
-            this.Add.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(982, 565);
+            Controls.Add(tcMainMenu);
+            Name = "Form1";
+            Text = "Form1";
+            Load += Form1_Load_1;
+            tcMainMenu.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tcProducts.ResumeLayout(false);
+            Add.ResumeLayout(false);
+            Add.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProducts).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -335,7 +334,7 @@
         private TabControl tcProducts;
         private TabPage Add;
         private TabPage Products;
-        private TabPage tabPage2;
+        private TabPage Orders;
         private TextBox tbBrand;
         private Panel panel1;
         private TextBox tbQuantity;

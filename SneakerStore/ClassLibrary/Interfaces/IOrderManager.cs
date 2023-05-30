@@ -11,5 +11,6 @@ namespace Logic.Interfaces
     public interface IOrderManager
     {
         public void AddAccountOrder(Order order);
+        public List<OrderDTO> GetAllOrdersForUser(int userId);
     }
 }
