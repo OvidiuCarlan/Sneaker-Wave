@@ -11,6 +11,7 @@ namespace Logic.Interfaces
     public interface IUserDataHandler
     {
         public bool Add(CustomerDTO customerDTO);
+        public int AddNoAccountCustomer(Customer customer);
         public bool Remove();
         public bool Edit(CustomerDTO customerDTO);
         public List<User> GetAll();

@@ -2,3 +2,47 @@
 @model Website.Pages.PersonalDataModel
 @{
 }
+
+<link rel="stylesheet" href="~/css/PersonalDataStyleSheet.css" asp-append-version="true" />
+
+<section class="container">
+    <header>PERSONAL DATA</header>
+
+    <form method="post" class="form">
+
+        <div class="field">
+            <label asp-for="customer.firstName">First Name</label>
+            <span asp-validation-for="customer.firstName"></span>
+            <input type="text" placeholder="First Name" asp-for="customer.firstName" required>
+        </div>
+        <div class="field">
+            <label asp-for="customer.lastName">Last Name</label>
+            <span asp-validation-for="customer.lastName"></span>
+            <input type="text" placeholder="Last Name" asp-for="customer.lastName" required>
+        </div>
+        <div class="field">
+            <label asp-for="customer.email">Email</label>
+            <span asp-validation-for="customer.email"></span>
+            <input type="email" placeholder="Email" asp-for="customer.email" required>
+        </div>
+        <div class="field">
+            <label asp-for="customer.phone">Phone Number</label>
+            <span asp-validation-for="customer.phone"></span>
+            <input type="text" placeholder="Phone Number" asp-for="customer.phone" required>
+        </div>
+        <div class="field">
+            <span asp-validation-for="customer.email" class="error-message">@Model.errorMessage</span>
+        </div>
+        <input type="hidden" asp-for="customer.salt" value="000" />
+        <input type="hidden" asp-for="customer.password" value="000"/>
+
+
+        <div class="field">
+            <button type="submit">Next</button>
+        </div>       
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

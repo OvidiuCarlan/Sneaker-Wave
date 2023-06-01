@@ -7,7 +7,6 @@ using System.Text.Json;
 
 namespace Website.Pages
 {
-    //[Authorize(Policy = "CustomPolicy")]
     public class ShoppingCartModel : PageModel
     {
         public List<ShoppingCartItemDTO> cartItems { get; set; }
@@ -21,17 +20,28 @@ namespace Website.Pages
             _logger = logger;
         }
         public void OnGet()
-        {
+        {            
             cartItems = GetCartItems();
             Total = CalculateTotalPrice();
-            BonusCardPoints = bonusCardManager.GetBonusPoints(GetUserId());
+            if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                BonusCardPoints = bonusCardManager.GetBonusPoints(GetUserId());
+            }            
         }
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
+                cartItems = GetCartItems();
+                Total = CalculateTotalPrice();
                 StoreTotalPrice(Total);
-                return RedirectToPage("Checkout");
+
+                if (User?.Identity?.IsAuthenticated ?? false)
+                {
+                    return RedirectToPage("Checkout");
+                }
+                
+                return RedirectToPage("PersonalData");
             }
             return Page();
         }

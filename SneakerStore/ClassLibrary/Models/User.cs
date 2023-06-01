@@ -12,8 +12,8 @@ namespace Logic.Models
         private string firstName;
         private string lastName;
         private string email;
-        private string salt;
-        private string password;        
+        private string? salt;
+        private string? password;
 
         public int Id { get { return id; } }        
         public string FirstName { get { return firstName; } }

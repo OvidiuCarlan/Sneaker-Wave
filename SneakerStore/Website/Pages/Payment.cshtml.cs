@@ -20,6 +20,7 @@ namespace Website.Pages
         Order order { get; set; }
         private Card card { get; set; }
         string errorMessage { get; set; }
+        public bool isAuthenticated = false;
 
         private readonly ILogger<PaymentModel> _logger;
         private readonly IOrderManager orderManager;
@@ -36,49 +37,157 @@ namespace Website.Pages
         public async Task<IActionResult> OnPost()
         {
             if (ModelState.IsValid)
-            {               
-                customer = GetCurrentUser();
-                dateTime = DateTime.Now;
-                address = GetAddress();
-                items = GetCartItems();
-                totalPrice = GetTotalPrice();
-                card = new Card(cardDTO);
-                string status = "Open";
+            {
+                order = GetOrder();
 
-                order = new Order(customer, dateTime, address, items, card, totalPrice, status);
-                try
-                {
-                    orderManager.AddAccountOrder(order);
-                    bonusCardManager.SaveBonusPoints(totalPrice, customer.Id);
+                if (isAuthenticated)
+                {                    
+                    try
+                    {
+                        orderManager.AddAccountOrder(order);
+                    }
+                    catch (Exception ex)
+                    {
+                        errorMessage = ex.Message;
+                        return Page();
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    errorMessage = ex.Message;
-                    return Page();
-                }                
+                    try
+                    {
+                        orderManager.AddNoAccountOrder(order);
+                    }
+                    catch (Exception ex)
+                    {
+                        errorMessage = ex.Message;
+                        return Page();
+                    }
+                }
+
+
+
+                //if (User?.Identity?.IsAuthenticated ?? false)
+                //{
+                //    order = GetAccountOrder();
+                //    try
+                //    {
+                //        orderManager.AddAccountOrder(order);
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        errorMessage = ex.Message;
+                //        return Page();
+                //    }
+                //}
+                //else
+                //{
+                //    order = GetNoAccountOrder();
+                //    try
+                //    {                        
+                //        orderManager.AddNoAccountOrder(order);
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        errorMessage = ex.Message;
+                //        return Page();
+                //    }                   
+                //}
             }
             return RedirectToPage("OrderCompleted");
         }
+        /// <summary>
+        /// This method returns order information
+        /// </summary>
+        /// <returns>Order object containing order information</returns>
+        public Order GetOrder()
+        {
+            customer = GetUser();
+            dateTime = DateTime.Now;
+            address = GetAddress();
+            items = GetCartItems();
+            totalPrice = GetTotalPrice();
+            card = new Card(cardDTO);
+            string status = "Open";
 
+            Order order = new Order(customer, dateTime, address, items, card, totalPrice, status);
+            return order;
+        }
+        //This method returns a no account order
+        //public Order GetNoAccountOrder()
+        //{
+        //    customer = GetUser();
+        //    dateTime = DateTime.Now;
+        //    address = GetAddress();
+        //    items = GetCartItems();
+        //    totalPrice = GetTotalPrice();
+        //    card = new Card(cardDTO);
+        //    string status = "Open";
 
+        //    Order order = new Order(customer, dateTime, address, items, card, totalPrice, status);
+        //    return order;
+        //}
+        
+        /// <summary>
+        /// This method returns a Customer type object containing customer information whether they have an account or not
+        /// </summary>
+        /// <returns>Customer object containing customer information</returns>
+        /// <exception cref="Exception"></exception>
+        public Customer GetUser()
+        {
+            CustomerDTO customerDto = new CustomerDTO();
+            Customer customer;
+
+            if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                isAuthenticated = true;
+
+                customerDto.Id = Convert.ToInt32(User?.FindFirst("id")?.Value ?? string.Empty);
+                customerDto.firstName = User?.FindFirst("firstName")?.Value ?? string.Empty;
+                customerDto.lastName = User?.FindFirst("lastName")?.Value ?? string.Empty;
+                customerDto.email = User?.FindFirst("email")?.Value ?? string.Empty;
+                customerDto.phone = User?.FindFirst("phone")?.Value ?? string.Empty;
+
+                customer = new Customer(customerDto);
+            }
+            else
+            {
+                string json = HttpContext.Session.GetString("userData");
+
+                if (string.IsNullOrEmpty(json))
+                {
+                    throw new Exception("There was an error. Please try again.");
+                }
+                else
+                {
+                    customerDto = JsonSerializer.Deserialize<CustomerDTO>(json);
+                    customer = new Customer(customerDto);
+                }
+            }         
+            return customer;
+        }
         /// <summary>
         /// Retrieves the current user details needed for the order.
         /// </summary>
         /// <returns>Current user details</returns>
-        public Customer GetCurrentUser()
-        {
-            CustomerDTO currentUserDTO = new CustomerDTO();
+        //public Customer GetCurrentUser()
+        //{
+        //    CustomerDTO currentUserDTO = new CustomerDTO();
 
-            currentUserDTO.Id = Convert.ToInt32(User?.FindFirst("id")?.Value ?? string.Empty);
-            currentUserDTO.firstName = User?.FindFirst("firstName")?.Value ?? string.Empty;
-            currentUserDTO.lastName = User?.FindFirst("lastName")?.Value ?? string.Empty;
-            currentUserDTO.email = User?.FindFirst("email")?.Value ?? string.Empty;
-            currentUserDTO.phone = User?.FindFirst("phone")?.Value ?? string.Empty;
+        //    currentUserDTO.Id = Convert.ToInt32(User?.FindFirst("id")?.Value ?? string.Empty);
+        //    currentUserDTO.firstName = User?.FindFirst("firstName")?.Value ?? string.Empty;
+        //    currentUserDTO.lastName = User?.FindFirst("lastName")?.Value ?? string.Empty;
+        //    currentUserDTO.email = User?.FindFirst("email")?.Value ?? string.Empty;
+        //    currentUserDTO.phone = User?.FindFirst("phone")?.Value ?? string.Empty;
 
-            Customer currentUser = new Customer(currentUserDTO);
+        //    Customer currentUser = new Customer(currentUserDTO);
 
-            return currentUser;
-        }
+        //    return currentUser;
+        //}
+
+
+
+
         /// <summary>
         /// Gets the user's address from the session
         /// </summary>

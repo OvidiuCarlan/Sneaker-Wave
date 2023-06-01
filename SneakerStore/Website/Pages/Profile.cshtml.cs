@@ -17,7 +17,13 @@ namespace Website.Pages
         public async Task<IActionResult> OnPostAsync()
         {
             await HttpContext.SignOutAsync();
+            ClearCart();
             return RedirectToPage("Login");
+        }
+        //Clears items in the shopping cart
+        public void ClearCart()
+        {
+            HttpContext.Session.Remove("CartItems");
         }
     }
 }

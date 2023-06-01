@@ -8,7 +8,6 @@ using System.Text.Json;
 
 namespace Website.Pages
 {
-    [Authorize]
     public class CheckoutModel : PageModel
     {
         [BindProperty]

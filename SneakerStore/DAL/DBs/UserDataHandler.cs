@@ -40,41 +40,7 @@ namespace DAL.DBs
                 conn.Close();
                 return rowsAffected == 1;
             }
-        }
-
-        
-        //        using (SqlTransaction transaction = conn.BeginTransaction())
-        //        {
-        //            try
-        //            {              
-        //
-        //                
-        //
-        //                transaction.Commit();
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                Console.WriteLine(ex.Message);
-        //                transaction.Rollback();
-        //            }
-        //        }
-
-        //}
-        //public bool Add(CustomerDTO customerDTO)
-        //{
-        //    using (SqlConnection conn = DBConnection.CreateConnection())
-        //    {
-        //        string sql = "INSERT INTO [Customers](First_Name, Last_Name, Email, Phone) VALUES (@firstName, @lastName, @email, @phone)";
-        //        SqlCommand cmd = new SqlCommand(sql, conn);
-
-        //        cmd.Parameters.AddWithValue("firstName", customerDTO.firstName);
-        //        cmd.Parameters.AddWithValue("lastName", customerDTO.lastName);
-        //        cmd.Parameters.AddWithValue("email", customerDTO.email);
-        //        cmd.Parameters.AddWithValue("phone", customerDTO.phone);
-        //        conn.Open();
-        //        v
-        //    }
-        //}
+        }      
 
         /// <summary>
         /// This method edits new user data from the db
@@ -216,6 +182,28 @@ namespace DAL.DBs
         public bool Remove()
         {
             throw new NotImplementedException();
-        }        
+        }
+
+        public int AddNoAccountCustomer(Customer customer)
+        {
+            using (SqlConnection conn = DBConnection.CreateConnection())
+            {
+                string sql = "INSERT INTO [Customers] (First_Name, Last_Name, Email, Phone, HasAccount) VALUES (@firstName, @lastName, @email, @phone, 0);" +
+                             "SELECT SCOPE_IDENTITY()";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@firstName", customer.FirstName);
+                cmd.Parameters.AddWithValue("@lastName", customer.LastName);
+                cmd.Parameters.AddWithValue("@email", customer.Email);
+                cmd.Parameters.AddWithValue("@phone", customer.Phone);
+
+                conn.Open();
+                int userId = 0;
+                userId = Convert.ToInt32(cmd.ExecuteScalar());
+                conn.Close();
+                
+                return userId;
+            }
+        }
     }
 }

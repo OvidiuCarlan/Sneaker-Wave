@@ -36,14 +36,14 @@ internal class Program
                 options.AccessDeniedPath = "/Error";
             });
 
-        //builder.Services.AddAuthorization(options =>
-        //{
-        //    options.AddPolicy("CustomPolicy", policy =>
-        //    {
-        //        policy.AuthenticationSchemes.Add(CookieAuthenticationDefaults.AuthenticationScheme);
-        //        policy.RequireAuthenticatedUser();
-        //    });
-        //});
+        builder.Services.AddAuthorization(options =>
+        {
+            options.AddPolicy("CustomPolicy", policy =>
+            {
+                //policy.AuthenticationSchemes.Add(CookieAuthenticationDefaults.AuthenticationScheme);
+                policy.RequireAuthenticatedUser();
+            });
+        });
 
         var app = builder.Build();
 
