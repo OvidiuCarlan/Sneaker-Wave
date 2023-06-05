@@ -1,0 +1,40 @@
+﻿.completed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+.completed img{
+    width: fit-content;
+    margin-bottom: 20px;
+    width: 30%;
+}
+.completed h1{
+    margin-bottom: 20px;
+}
+.continue_shopping {
+    background-color: black;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 75%;
+    width: 60%;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.container {
+    margin: 30px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 60vw;
+}

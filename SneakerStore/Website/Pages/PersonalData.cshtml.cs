@@ -17,9 +17,14 @@ namespace Website.Pages
         {
             _logger = logger;
         }
-        public void OnGet()
+        public IActionResult OnGet()
         {
-
+            List<ShoppingCartItemDTO> cartItems = GetCartItems();
+            if(cartItems.Count == 0 || (User?.Identity?.IsAuthenticated ?? false))
+            {
+                return RedirectToPage("Index");
+            }
+            return Page();
         }
         public async Task<IActionResult> OnPost()
         {
@@ -43,6 +48,22 @@ namespace Website.Pages
         {
             string json = JsonSerializer.Serialize(customer);
             HttpContext.Session.SetString("userData", json);
+        }
+        public List<ShoppingCartItemDTO> GetCartItems()
+        {
+            string json = HttpContext.Session.GetString("CartItems");
+
+            if (string.IsNullOrEmpty(json))
+            {
+                // If the session value for "CartItems" is null or empty, return an empty list
+                return new List<ShoppingCartItemDTO>();
+            }
+            else
+            {
+                // Deserialize the JSON into a list of ShoppingCartItems
+                List<ShoppingCartItemDTO> cartItems = JsonSerializer.Deserialize<List<ShoppingCartItemDTO>>(json);
+                return cartItems;
+            }
         }
     }
 }

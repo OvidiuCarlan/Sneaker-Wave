@@ -31,8 +31,17 @@ namespace Website.Pages
             bonusCardManager = _bonusCardManager;
             _logger = logger;
         }
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            Customer customer = GetUser();
+            List<ShoppingCartItem> cartItems = GetCartItems();
+            Address address = GetAddress();
+
+            if (!IsUserDataValid(customer) || cartItems.Count == 0 || !IsAddressValid(address))
+            {
+                return RedirectToPage("Index");
+            }
+            return Page();
         }
         public async Task<IActionResult> OnPost()
         {
@@ -45,6 +54,8 @@ namespace Website.Pages
                     try
                     {
                         orderManager.AddAccountOrder(order);
+                        ClearAllOrderData();
+                        return RedirectToPage("OrderCompleted");
                     }
                     catch (Exception ex)
                     {
@@ -57,6 +68,8 @@ namespace Website.Pages
                     try
                     {
                         orderManager.AddNoAccountOrder(order);
+                        ClearAllOrderData();
+                        return RedirectToPage("OrderCompleted");
                     }
                     catch (Exception ex)
                     {
@@ -64,37 +77,8 @@ namespace Website.Pages
                         return Page();
                     }
                 }
-
-
-
-                //if (User?.Identity?.IsAuthenticated ?? false)
-                //{
-                //    order = GetAccountOrder();
-                //    try
-                //    {
-                //        orderManager.AddAccountOrder(order);
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        errorMessage = ex.Message;
-                //        return Page();
-                //    }
-                //}
-                //else
-                //{
-                //    order = GetNoAccountOrder();
-                //    try
-                //    {                        
-                //        orderManager.AddNoAccountOrder(order);
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        errorMessage = ex.Message;
-                //        return Page();
-                //    }                   
-                //}
             }
-            return RedirectToPage("OrderCompleted");
+            return Page();
         }
         /// <summary>
         /// This method returns order information
@@ -112,21 +96,7 @@ namespace Website.Pages
 
             Order order = new Order(customer, dateTime, address, items, card, totalPrice, status);
             return order;
-        }
-        //This method returns a no account order
-        //public Order GetNoAccountOrder()
-        //{
-        //    customer = GetUser();
-        //    dateTime = DateTime.Now;
-        //    address = GetAddress();
-        //    items = GetCartItems();
-        //    totalPrice = GetTotalPrice();
-        //    card = new Card(cardDTO);
-        //    string status = "Open";
-
-        //    Order order = new Order(customer, dateTime, address, items, card, totalPrice, status);
-        //    return order;
-        //}
+        }        
         
         /// <summary>
         /// This method returns a Customer type object containing customer information whether they have an account or not
@@ -156,7 +126,7 @@ namespace Website.Pages
 
                 if (string.IsNullOrEmpty(json))
                 {
-                    throw new Exception("There was an error. Please try again.");
+                    return null;
                 }
                 else
                 {
@@ -165,28 +135,7 @@ namespace Website.Pages
                 }
             }         
             return customer;
-        }
-        /// <summary>
-        /// Retrieves the current user details needed for the order.
-        /// </summary>
-        /// <returns>Current user details</returns>
-        //public Customer GetCurrentUser()
-        //{
-        //    CustomerDTO currentUserDTO = new CustomerDTO();
-
-        //    currentUserDTO.Id = Convert.ToInt32(User?.FindFirst("id")?.Value ?? string.Empty);
-        //    currentUserDTO.firstName = User?.FindFirst("firstName")?.Value ?? string.Empty;
-        //    currentUserDTO.lastName = User?.FindFirst("lastName")?.Value ?? string.Empty;
-        //    currentUserDTO.email = User?.FindFirst("email")?.Value ?? string.Empty;
-        //    currentUserDTO.phone = User?.FindFirst("phone")?.Value ?? string.Empty;
-
-        //    Customer currentUser = new Customer(currentUserDTO);
-
-        //    return currentUser;
-        //}
-
-
-
+        }       
 
         /// <summary>
         /// Gets the user's address from the session
@@ -253,6 +202,53 @@ namespace Website.Pages
                 totalPrice = JsonSerializer.Deserialize<double>(json);
                 return totalPrice;
             }
+        }
+        /// <summary>
+        /// This method checks if there is any user data in the Customer object
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns>Returns true or false depending if the usre data is valid or not</returns>
+        public bool IsUserDataValid(Customer customer)
+        {
+            if (customer == null ||
+               string.IsNullOrEmpty(customer.FirstName) ||
+               string.IsNullOrEmpty(customer.LastName) ||
+               string.IsNullOrEmpty(customer.Email) ||
+               string.IsNullOrEmpty(customer.Phone))
+            {
+                return false;
+            }
+            return true;
+        }
+        /// <summary>
+        /// This method checks if there is any data in the Address object
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns>Returns true or false depending if the data is valid or not</returns>
+        public bool IsAddressValid(Address address)
+        {
+            if (address == null ||
+               string.IsNullOrEmpty(address.City) ||
+               string.IsNullOrEmpty(address.Sreet) ||
+               string.IsNullOrEmpty(address.HouseNumber) ||
+               string.IsNullOrEmpty(address.Zipcode))
+            {
+                return false;
+            }
+            return true;
+        }
+        /// <summary>
+        /// This methos clears the sessions of all order data
+        /// </summary>
+        public void ClearAllOrderData()
+        {
+            if(isAuthenticated == false)
+            {
+                HttpContext.Session.Remove("userData");
+            }
+            HttpContext.Session.Remove("address");
+            HttpContext.Session.Remove("Price");
+            HttpContext.Session.Remove("CartItems");
         }
     }
 }

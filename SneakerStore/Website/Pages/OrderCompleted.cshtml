@@ -3,4 +3,10 @@
 @{
 }
 
-<h1>Order Successful</h1>
+<link rel="stylesheet" href="~/css/OrderCompletedStyleSheet.css" asp-append-version="true" />
+
+<div class="completed">
+    <img src="/Images/checked.png">
+    <h1 class="completed">Thank you for your order!</h1>
+    <a asp-page="/Index" class="continue_shopping">Back to main page</a>
+</div>
