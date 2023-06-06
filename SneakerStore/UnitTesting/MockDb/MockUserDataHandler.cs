@@ -16,6 +16,11 @@ namespace UnitTesting.MockDb
             throw new NotImplementedException();
         }
 
+        public int AddNoAccountCustomer(Customer customer)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Edit(CustomerDTO customerDTO)
         {
             throw new NotImplementedException();
