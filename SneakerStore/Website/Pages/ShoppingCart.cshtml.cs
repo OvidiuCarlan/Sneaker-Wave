@@ -1,5 +1,7 @@
 using Logic.DTOs;
 using Logic.Interfaces;
+using Logic.Logic;
+using Logic.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,12 +13,15 @@ namespace Website.Pages
     {
         public List<ShoppingCartItemDTO> cartItems { get; set; }
         public double Total { get; set; }
+        public double discountedPrice { get; set; }
         public int BonusCardPoints { get; set; }
         private readonly ILogger<ShoppingCartModel> _logger;
         private readonly IBonusCardManager bonusCardManager;
-        public ShoppingCartModel(ILogger<ShoppingCartModel> logger, IBonusCardManager _bonusCardManager)
+        private readonly IOrderManager orderManager;
+        public ShoppingCartModel(ILogger<ShoppingCartModel> logger, IBonusCardManager _bonusCardManager, IOrderManager _orderManager)
         {
             bonusCardManager = _bonusCardManager;
+            orderManager = _orderManager;
             _logger = logger;
         }
         public void OnGet()
@@ -26,7 +31,12 @@ namespace Website.Pages
             if (User?.Identity?.IsAuthenticated ?? false)
             {
                 BonusCardPoints = bonusCardManager.GetBonusPoints(GetUserId());
-            }            
+            }
+            //Customer customer = GetUser();
+
+            int userId = GetUserId();
+            
+            discountedPrice = orderManager.CheckForDiscounts(Total, userId);
         }
         public async Task<IActionResult> OnPostAsync()
         {
@@ -92,7 +102,11 @@ namespace Website.Pages
         }
         public int GetUserId()
         {
-            return Convert.ToInt32(User?.FindFirst("id")?.Value ?? string.Empty);
-        }
+            if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                return Convert.ToInt32(User?.FindFirst("id")?.Value ?? string.Empty);
+            }
+            return 0;   
+        }     
     }
 }

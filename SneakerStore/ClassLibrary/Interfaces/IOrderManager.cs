@@ -10,8 +10,9 @@ namespace Logic.Interfaces
 {
     public interface IOrderManager
     {
-        public void AddAccountOrder(Order order);
-        public void AddNoAccountOrder(Order order);
+        public void AddAccountOrder(Order order, double discountedPrice);
+        public void AddNoAccountOrder(Order order, double discountedPrice);
         public List<OrderDTO> GetAllOrdersForUser(int userId);
+        public double CheckForDiscounts(double price, int userId);
     }
 }

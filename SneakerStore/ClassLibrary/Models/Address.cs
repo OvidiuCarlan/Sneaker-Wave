@@ -53,5 +53,16 @@ namespace Logic.Models
             this.houseNumber = dto.StreetNumber;
             this.zipCode = dto.Zipcode;
         }
+        public AddressDTO ToDTO()
+        {
+            return new AddressDTO()
+            {
+                Id = id,
+                City = city,
+                Street = street,
+                StreetNumber = houseNumber,
+                Zipcode = zipCode
+            };
+        }
     }
 }

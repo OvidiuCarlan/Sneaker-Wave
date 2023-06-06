@@ -25,6 +25,7 @@ namespace Website.Pages
         private readonly ILogger<PaymentModel> _logger;
         private readonly IOrderManager orderManager;
         private readonly IBonusCardManager bonusCardManager;
+        double discountPrice { get; set; }
         public PaymentModel(ILogger<PaymentModel> logger, IOrderManager _orderManager, IBonusCardManager _bonusCardManager)
         {
             orderManager = _orderManager;
@@ -33,14 +34,14 @@ namespace Website.Pages
         }
         public IActionResult OnGet()
         {
-            Customer customer = GetUser();
+            Customer customer = GetUser();            
             List<ShoppingCartItem> cartItems = GetCartItems();
             Address address = GetAddress();
 
             if (!IsUserDataValid(customer) || cartItems.Count == 0 || !IsAddressValid(address))
             {
                 return RedirectToPage("Index");
-            }
+            }          
             return Page();
         }
         public async Task<IActionResult> OnPost()
@@ -53,7 +54,8 @@ namespace Website.Pages
                 {                    
                     try
                     {
-                        orderManager.AddAccountOrder(order);
+                        discountPrice = orderManager.CheckForDiscounts(order.Price, order.Customer.Id);
+                        orderManager.AddAccountOrder(order, discountPrice);
                         ClearAllOrderData();
                         return RedirectToPage("OrderCompleted");
                     }
@@ -67,7 +69,8 @@ namespace Website.Pages
                 {
                     try
                     {
-                        orderManager.AddNoAccountOrder(order);
+                        discountPrice = orderManager.CheckForDiscounts(order.Price, order.Customer.Id);
+                        orderManager.AddNoAccountOrder(order, discountPrice);
                         ClearAllOrderData();
                         return RedirectToPage("OrderCompleted");
                     }

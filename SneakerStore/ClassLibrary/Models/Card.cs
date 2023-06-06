@@ -37,5 +37,16 @@ namespace Logic.Models
             securityNumber = dto.SecurityNumber;
             expirationDate = dto.ExpirationDate;    
         }
+        public CardDTO ToDTO()
+        {
+            return new CardDTO
+            {
+                Id = id,
+                Name = name,
+                Number = number,
+                SecurityNumber = securityNumber,
+                ExpirationDate = expirationDate,
+            };
+        }
     }
 }

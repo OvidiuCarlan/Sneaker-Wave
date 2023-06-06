@@ -29,6 +29,15 @@ namespace Logic.Models
             this.size = dto.Size;
             this.quantity = dto.Quantity;
         }
+        public ShoppingCartItemDTO ToDTO()
+        {
+            return new ShoppingCartItemDTO()
+            {
+                Product = product.ProductToProductDTO(),
+                Size = size,
+                Quantity = quantity
+            };
+        }
     }
     
 }
